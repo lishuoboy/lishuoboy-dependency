@@ -28,6 +28,14 @@
             <version>5.6.5</version>
         </dependency>
 
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <!--  test 的不会传递,所以改为compile -->
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
