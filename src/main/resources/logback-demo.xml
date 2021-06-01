@@ -1,16 +1,97 @@
-<!-- 用于其他项目复制参考 -->
-<configuration>
+<!-- 一般配置 -->
+<configuration debug="false" scan="true" scanPeriod="60 seconds" packagingData="false">
 
+    <!-- 日志格式：  /log/{项目名} -->
+    <property name="log.path" value="/log/lishuoboy-dependency-base"/>
+    <!-- logback    默认格式  %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n  -->
+    <!-- springboot 默认格式  %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-} [%15.15t] %-40.40logger{39} : %m%n  -->
+    <!-- lishuoboy  推荐格式  %d{MM-dd HH:mm:ss.SSS} [%5level] %4line %40.40logger{39}.%-30.30method : %m%n  -->
+    <!-- lishuoboy  推荐格式2  %d{MM-dd HH:mm:ss.SSS} [%5level] 【%logger-%method-%line】 %n%d{MM-dd HH:mm:ss.SSS} [%5level] %m%n  -->
     <property name="log.pattern" value="%d{MM-dd HH:mm:ss.SSS} [%5level] %4line %40.40logger{39}.%-30.30method : %m%n"/>
+    <property name="log.maxHistory" value="30"/>
+    <property name="encoder.charset" value="UTF8"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>${log.pattern}</pattern>
+            <charset class="java.nio.charset.Charset">${encoder.charset}</charset>
         </encoder>
     </appender>
 
+    <appender name="file_all" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+            <charset class="java.nio.charset.Charset">${encoder.charset}</charset>
+        </encoder>
+        <immediateFlush>true</immediateFlush>
+        <file>${log.path}/all.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/%d{yyyyMM,aux}/%d{yyyyMMdd}_all_%i.log.zip</fileNamePattern>
+            <maxHistory>${log.maxHistory}</maxHistory>
+            <maxFileSize>100MB</maxFileSize>
+            <totalSizeCap>1GB</totalSizeCap>
+            <cleanHistoryOnStart>false</cleanHistoryOnStart>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>all</level>
+        </filter>
+    </appender>
+
+    <appender name="file_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+            <charset class="java.nio.charset.Charset">${encoder.charset}</charset>
+        </encoder>
+        <!-- 立刻写入。 默认为 true。将 immediateFlush 设置为 false 可以获得更高的日志吞吐量 -->
+        <immediateFlush>true</immediateFlush>
+        <!-- 没有默认值。要写入文件的名称。如果文件不存在，则新建。如果为相对路径则为根目录。在 windows 平台上，用户经常忘记对反斜杠进行转义。例如，c:\temp\test.log 不会被正确解析，因为 '\t' 是一个转义字符，会被解析为一个 tab 字符 (\u0009)。正确的值应该像：c:/temp/test.log 或者 c:\\temp\\test.log。 -->
+        <file>${log.path}/error.log</file>
+        <!-- 如果为 true，日志事件会被追加到文件中，否则的话，文件会被截断。默认为 true -->
+        <append>true</append>
+        <!-- 在严格模式下，FileAppender 会将日志安全的写入指定文件。即使在不同的 JVM 或者不同的主机上运行 FileAppender 实例。默认的值为 false。 -->
+        <!--    FixedWindowRollingPolicy 不支持该属性。
+                RollingFileAppender 在使用严格模式时要与 `TimeBasedRollingPolicy 结合使用，但是有两个限制：
+                1. 在严格模式下，也不支持也不允许文件压缩（我们不能让一个 JVM 在写入文件时，另一个 JVM 在压缩该文件）
+                2. 不能对 FileAppender 的 file 属性进行设置。实际上，大多数的操作系统不允许在有进程操作文件的情况下对文件改名。
+                其它的参考 FileAppender  -->
+        <prudent>false</prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/%d{yyyyMM,aux}/%d{yyyyMMdd}_error_%i.log.zip</fileNamePattern>
+            <maxHistory>${log.maxHistory}</maxHistory>
+            <maxFileSize>50MB</maxFileSize>
+            <totalSizeCap>1GB</totalSizeCap>
+            <cleanHistoryOnStart>false</cleanHistoryOnStart>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>error</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="file_spring" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+            <charset class="java.nio.charset.Charset">${encoder.charset}</charset>
+        </encoder>
+        <file>${log.path}/spring.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/%d{yyyyMM,aux}/%d{yyyyMMdd}_spring_%i.log.zip</fileNamePattern>
+            <maxHistory>${log.maxHistory}</maxHistory>
+            <maxFileSize>50MB</maxFileSize>
+            <totalSizeCap>1GB</totalSizeCap>
+            <cleanHistoryOnStart>false</cleanHistoryOnStart>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="org.springframework" level="info">
+        <appender-ref ref="file_spring"/>
+    </logger>
+
     <root level="debug">
         <appender-ref ref="STDOUT"/>
+        <appender-ref ref="file_all"/>
+        <appender-ref ref="file_error"/>
     </root>
 
 </configuration>
