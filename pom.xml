@@ -5,42 +5,53 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>top.lishuoboy</groupId>
-    <artifactId>lishuoboy-dependency-base</artifactId>
+    <artifactId>lishuoboy-dependency-parent</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>lishuoboy-dependency-base</module>
+        <module>lishuoboy-dependency-sb</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+
+        <lombok.version>1.18.12</lombok.version>
+        <logback.version>1.2.3</logback.version>
+        <hutool.version>5.6.5</hutool.version>
+        <junit.version>4.13.2</junit.version>
     </properties>
 
-    <dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.12</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>5.6.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <!--  test 的不会传递,所以改为compile -->
-            <scope>compile</scope>
-        </dependency>
-
-    </dependencies>
+            <!-- 以下是sb自带的 -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <!--  test 的不会传递,所以改为compile -->
+                <scope>compile</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
