@@ -61,6 +61,20 @@
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>2.8.1</version>
             </plugin>
+            <!-- deploy jar 和 pom 同时把源码 deploy  -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
