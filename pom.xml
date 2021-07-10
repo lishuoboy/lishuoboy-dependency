@@ -43,6 +43,7 @@
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
             </dependency>
+            <!-- 本来想升级junit5，因为junit5依赖较多、不清晰，放弃 -->
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
