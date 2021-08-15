@@ -15,7 +15,6 @@
         <dependency>
             <groupId>top.lishuoboy</groupId>
             <artifactId>lishuoboy-dependency-sb</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
         <!-- 以下是sb自带的 -->
         <dependency>
