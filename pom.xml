@@ -22,6 +22,8 @@
     <properties>
         <java.version>1.8</java.version>
 
+        <lishuoboy.version>1.0-SNAPSHOT</lishuoboy.version>
+
         <commons-io.version>2.10.0</commons-io.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <commons-lang.version>2.6</commons-lang.version>
@@ -95,6 +97,21 @@
     <dependencyManagement>
         <dependencies>
             <!-- 1  compile 系列() -->
+
+            <!-- lishuoboy 系列 -->
+
+            <dependency>
+                <groupId>top.lishuoboy</groupId>
+                <artifactId>lishuoboy-dependency-sb</artifactId>
+                <version>${lishuoboy.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>top.lishuoboy</groupId>
+                <artifactId>lishuoboy-dependency-base</artifactId>
+                <version>${lishuoboy.version}</version>
+            </dependency>
+
             <!-- commons 系列，start，按流行度排序  -->
             <dependency>
                 <groupId>commons-io</groupId>
