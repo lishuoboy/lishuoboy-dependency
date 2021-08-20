@@ -14,11 +14,10 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
+        <module>lishuoboy-dependencies</module>
+        <module>lishuoboy-dependency-all</module>
         <module>lishuoboy-dependency-base</module>
         <module>lishuoboy-dependency-sb</module>
-        <module>lishuoboy-dependency-all</module>
-
-        <module>lishuoboy-dependencies</module>
     </modules>
 
     <dependencyManagement>
