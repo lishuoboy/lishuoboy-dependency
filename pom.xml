@@ -10,7 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>top.lishuoboy</groupId>
-    <artifactId>lishuoboy-dependency-parent</artifactId>
+    <artifactId>lishuoboy-dependency</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
