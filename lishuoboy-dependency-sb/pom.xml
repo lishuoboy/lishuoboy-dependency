@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>lishuoboy-dependency-sb</artifactId>
+    <packaging>pom</packaging>
 
     <dependencies>
         <dependency>
