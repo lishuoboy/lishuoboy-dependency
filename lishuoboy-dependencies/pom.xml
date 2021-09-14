@@ -59,6 +59,7 @@
         <poi-ooxml.version>5.0.0</poi-ooxml.version>
         <httpclient.version>4.5.13</httpclient.version>
         <mybatis.version>3.5.5</mybatis.version>
+        <pagehelper.version>5.2.1</pagehelper.version>
         <hibernate-core.version>5.4.20.Final</hibernate-core.version>
         <javax.persistence-api.version>2.2</javax.persistence-api.version>
         <jasypt.version>1.9.3</jasypt.version>
@@ -378,6 +379,13 @@
                 <artifactId>mybatis</artifactId>
                 <version>${mybatis.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
