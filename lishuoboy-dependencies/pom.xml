@@ -52,6 +52,7 @@
         <jxbrowser-win64.version>7.12.2</jxbrowser-win64.version>
         <jxbrowser-6.version>6.21</jxbrowser-6.version>
         <jxbrowser-win64-6.version>6.21</jxbrowser-win64-6.version>
+        <javacv-platform.version>1.5.6</javacv-platform.version>
 
         <servlet2-api.version>2.5</servlet2-api.version>
         <javaee-web-api.version>7.0</javaee-web-api.version>
@@ -407,6 +408,13 @@
                             <artifactId>jxbrowser-win64</artifactId>
                             <version>${jxbrowser-win64-6.version}</version>
                         </dependency>-->
+
+            <!-- javacv-platform  依赖了 opencv-platform。 太大了 800M  -->
+            <dependency>
+                <groupId>org.bytedeco</groupId>
+                <artifactId>javacv-platform</artifactId>
+                <version>${javacv-platform.version}</version>
+            </dependency>
 
 
             <!-- 2  provided 系列 -->

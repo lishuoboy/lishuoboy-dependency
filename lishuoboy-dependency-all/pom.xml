@@ -268,6 +268,11 @@
             <groupId>com.teamdev.jxbrowser</groupId>
             <artifactId>jxbrowser-win64</artifactId>
         </dependency>
+        <!-- 太大了 800M -->
+<!--        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv-platform</artifactId>
+        </dependency>-->
 
         <!-- 2  provided 系列 -->
         <dependency>
