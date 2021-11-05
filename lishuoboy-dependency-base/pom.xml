@@ -26,8 +26,6 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <!--  test 的不会传递,所以改为 compile,默认继承parent的scope -->
-            <!--  <scope>test</scope>  -->
         </dependency>
     </dependencies>
 

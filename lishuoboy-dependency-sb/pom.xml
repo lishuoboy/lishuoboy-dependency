@@ -20,8 +20,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <!--  provided 的不会传递,所以改为 compile,默认继承parent的scope -->
-            <!--  <scope>provided</scope>  -->
         </dependency>
     </dependencies>
 
