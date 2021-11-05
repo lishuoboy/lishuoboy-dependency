@@ -263,13 +263,15 @@
             <artifactId>selenium-java</artifactId>
         </dependency>
 
-        <!-- jxbrowser-win64，收费。内部依赖了 jxbrowser -->
+        <!-- jxbrowser-win64，收费，内部依赖了 jxbrowser。太大了，70M -->
+        <!--
         <dependency>
             <groupId>com.teamdev.jxbrowser</groupId>
             <artifactId>jxbrowser-win64</artifactId>
-        </dependency>
-        <!-- 太大了 800M -->
-<!--        <dependency>
+        </dependency>-->
+        <!-- 太大了，800M -->
+        <!--
+        <dependency>
             <groupId>org.bytedeco</groupId>
             <artifactId>javacv-platform</artifactId>
         </dependency>-->
@@ -323,5 +325,24 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <!--
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>-->
 
 </project>
