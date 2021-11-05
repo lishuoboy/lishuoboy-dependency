@@ -276,6 +276,11 @@
             <artifactId>javacv-platform</artifactId>
         </dependency>-->
 
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+
         <!-- 2  provided 系列 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
