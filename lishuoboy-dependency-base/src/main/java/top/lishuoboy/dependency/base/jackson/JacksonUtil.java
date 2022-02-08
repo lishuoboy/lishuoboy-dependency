@@ -42,8 +42,16 @@ public class JacksonUtil {
         return resultList;
     }
 
+    /** 固定泛型 */
     @SneakyThrows
-    public static <K, V> Map<K, V> str2Map(String jsonStr, Class<K> keyType, Class<V> valueType) {
+    public static Map<String, Object> str2Map(String jsonStr) {
+        Map<String, Object> resultMap = str2MapGenerics(jsonStr, String.class, Object.class);
+        return resultMap;
+    }
+
+    /** 泛型 */
+    @SneakyThrows
+    public static <K, V> Map<K, V> str2MapGenerics(String jsonStr, Class<K> keyType, Class<V> valueType) {
         JavaType javaType = mapper.getTypeFactory().constructMapType(Map.class, keyType, valueType);
         Map<K, V> resultMap = mapper.readValue(jsonStr, javaType);
         return resultMap;

@@ -32,6 +32,10 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
         <!-- 本来想升级junit5，因为junit5依赖较多、不清晰，放弃 -->
         <dependency>
             <groupId>junit</groupId>
