@@ -2,8 +2,8 @@ package top.lishuoboy.dependency.base.jackson;
 
 import com.alibaba.fastjson.JSON;
 
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Fastjson 工具类
@@ -32,8 +32,8 @@ public class FastjsonUtil {
     }
 
     /** 固定泛型 */
-    public static Map<String, Object> str2Map(String jsonStr) {
-        Map<String, Object> resultMap = JSON.parseObject(jsonStr, Map.class);
+    public static LinkedHashMap<String, Object> str2Map(String jsonStr) {
+        LinkedHashMap<String, Object> resultMap = JSON.parseObject(jsonStr, LinkedHashMap.class);
         return resultMap;
     }
 }
