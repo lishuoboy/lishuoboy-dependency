@@ -7,7 +7,7 @@
     <!-- springboot 默认格式  %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-} [%15.15t] %-40.40logger{39} : %m%n  -->
     <!-- lishuoboy  生产格式1 %d{MM-dd HH:mm:ss.SSS} [%5level] %4line %40.40logger{39}.%-30.30method : %m%n  -->
     <!-- lishuoboy  生产格式2 %d{MM-dd HH:mm:ss.SSS} [%5level] 【%logger-%method-%line】 %n%d{MM-dd HH:mm:ss.SSS} [%5level] %m%n  -->
-    <!-- lishuoboy  测试格式  %d{HH:mm:ss.SSS} [%5level] %m%n  -->
+    <!-- lishuoboy  测试格式  %d{HH:mm:ss.SSS} [%5level] %4line : %m%n  -->
     <property name="log.pattern" value="%d{MM-dd HH:mm:ss.SSS} [%5level] %4line %40.40logger{39}.%-30.30method : %m%n"/>
     <property name="log.maxHistory" value="30"/>
     <property name="encoder.charset" value="UTF8"/>
