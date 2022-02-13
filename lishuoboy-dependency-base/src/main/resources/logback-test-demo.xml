@@ -15,7 +15,7 @@
 
     <logger name="org.springframework" level="info"></logger>
 
-    <logger name="top.lishuoboy" level="trace"/>
+    <logger name="top.lishuoboy" level="debug"/>
 
     <root level="debug">
         <appender-ref ref="STDOUT"/>
