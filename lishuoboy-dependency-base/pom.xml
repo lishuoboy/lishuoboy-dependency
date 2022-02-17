@@ -12,7 +12,7 @@
     <artifactId>lishuoboy-dependency-base</artifactId>
 
     <dependencies>
-        <!-- 1、sb未包含 -->
+        <!-- 1. sb-dependencies 未包含 -->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
@@ -21,28 +21,31 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
-        <!-- 本来想升级junit5，因为junit5依赖较多、不清晰，放弃 -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
 
-        <!-- 2、sb已包含 -->
+        <!-- 2.1 sb-dependencies 已包含,且 sb-starter(test) 未引入依赖 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <!--            <optional>true</optional>-->
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <!-- 2.2 sb-dependencies 已包含,且 sb-starter(test) 引入依赖 -->
+        <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
         </dependency>
+        <!-- 本来想升级junit5，因为junit5依赖较多(之前认为)、不清晰，放弃。考虑兼容性，不能删除、升级 -->
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
 

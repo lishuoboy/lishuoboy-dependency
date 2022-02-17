@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>lishuoboy-dependency</artifactId>
+        <groupId>top.lishuoboy</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>lishuoboy-dependency-sb</artifactId>
+
+    <dependencies>
+        <!-- 1. sb-dependencies 未包含 -->
+        <!-- 见3. -->
+
+        <!-- 2.1 sb-dependencies 已包含,且 sb-starter(test) 未引入依赖 -->
+        <!-- 部分见3. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <!--            <optional>true</optional>-->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <!--            <optional>true</optional>-->
+        </dependency>
+
+        <!-- 2.2 sb-dependencies 已包含,且 sb-starter(test) 引入依赖 -->
+        <!-- 不需要，见3. -->
+
+        <!-- 3. lishuoboy -->
+        <dependency>
+            <groupId>top.lishuoboy</groupId>
+            <artifactId>lishuoboy-dependency-base</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+</project>
