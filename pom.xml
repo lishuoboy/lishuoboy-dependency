@@ -58,6 +58,7 @@
         <jxbrowser-win64-6.version>6.21</jxbrowser-win64-6.version>
         <javacv-platform.version>1.5.6</javacv-platform.version>
         <guava.version>30.1.1-jre</guava.version>
+        <jquery.version>3.6.0</jquery.version>
 
         <servlet2-api.version>2.5</servlet2-api.version>
         <javaee-web-api.version>8.0.1</javaee-web-api.version>
@@ -425,7 +426,11 @@
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.webjars</groupId>
+                <artifactId>jquery</artifactId>
+                <version>${jquery.version}</version>
+            </dependency>
 
 
             <!-- 2  provided 系列 -->
