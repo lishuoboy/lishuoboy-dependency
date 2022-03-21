@@ -37,10 +37,7 @@
             <groupId>top.lishuoboy</groupId>
             <artifactId>lishuoboy-dependency-base</artifactId>
             <exclusions>
-                <exclusion>
-                    <groupId>ch.qos.logback</groupId>
-                    <artifactId>logback-classic</artifactId>
-                </exclusion>
+                <!-- sb 已经带了 junit5 -->
                 <exclusion>
                     <groupId>junit</groupId>
                     <artifactId>junit</artifactId>
