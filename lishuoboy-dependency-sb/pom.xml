@@ -19,7 +19,9 @@
         <!-- 部分见3. -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <!--            <optional>true</optional>-->
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -28,9 +30,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <!--            <optional>true</optional>-->
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
         <!-- 2.2 sb-dependencies 已包含,且 sb-starter(test) 引入依赖 -->
