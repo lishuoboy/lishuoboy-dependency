@@ -28,11 +28,6 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <!--            <optional>true</optional>-->
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
         <!-- 2.2 sb-dependencies 已包含,且 sb-starter(test) 引入依赖 -->
         <!-- 不需要，见3. -->
 
