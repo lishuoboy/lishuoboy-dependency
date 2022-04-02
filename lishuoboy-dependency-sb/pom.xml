@@ -29,6 +29,10 @@
             <!--            <optional>true</optional>-->
         </dependency>
         <!-- 2.2 sb-dependencies 已包含,且 sb-starter(test) 引入依赖 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
         <!-- 不需要，见3. -->
 
         <!-- 3. lishuoboy -->
