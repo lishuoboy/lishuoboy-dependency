@@ -1,0 +1,14 @@
+# spring 核心 日志级别
+debug: false
+trace: false
+logging:
+  # spring 非核心 日志级别
+  level:
+    top: trace
+  pattern:
+    # SB console     默认格式  %d{yyyy-MM-dd HH:mm:ss.SSS} %clr(%5p) %clr(${PID}){magenta} --- [%15.15t] %clr(%-40.40logger{39}){cyan} : %m%n %wEx
+    # SB file        默认格式  %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID} --- [%t] %-40.40logger{39} : %m%n %wEx
+    # LS SB file     生产格式  %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID} --- [%30.30t] %line %-40.40logger{39}.%-30.30method: %m%n %wEx
+    # LS SB console  测试格式1 %d{HH:mm:ss.SSS} [%clr(%5p)] %clr(%4line){magenta} : %m%n
+    # LS SB console  测试格式2 %d{HH:mm:ss.SSS} [%clr(%5p)] %clr(${PID}){magenta} [%15.15t] %clr(%40.40logger{39}.%-30.30method){cyan} %clr(%4line){blue} : %m%n
+    console: '%d{HH:mm:ss.SSS} [%clr(%5p)] %clr(%4line){magenta} : %m%n'
