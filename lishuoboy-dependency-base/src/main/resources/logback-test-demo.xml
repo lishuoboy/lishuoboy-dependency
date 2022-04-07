@@ -1,9 +1,9 @@
 <configuration>
 
     <!-- logback    默认格式  %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n  -->
-    <!-- springboot 默认格式  %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-} [%15.15t] %-40.40logger{39} : %m%n  -->
-    <!-- lishuoboy  生产格式1 %d{MM-dd HH:mm:ss.SSS} [%5level] %4line %40.40logger{39}.%-30.30method : %m%n  -->
-    <!-- lishuoboy  生产格式2 %d{MM-dd HH:mm:ss.SSS} [%5level] 【%logger-%method-%line】 %n%d{MM-dd HH:mm:ss.SSS} [%5level] %m%n  -->
+    <!-- springboot 默认格式  %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-} [%15.15t] %-40.40logger{39} : %m%n %wEx  -->
+    <!-- lishuoboy  生产格式1 %d{MM-dd HH:mm:ss.SSS} [%5level] ${PID} [%30.30t] %4line %40.40logger{39}.%-30.30method : %m%n  -->
+    <!-- lishuoboy  生产格式2 %d{MM-dd HH:mm:ss.SSS} [%5level] 【${PID}-%t-%logger-%method-%line】 %n%d{MM-dd HH:mm:ss.SSS} [%5level] %m%n  -->
     <!-- lishuoboy  测试格式  %d{HH:mm:ss.SSS} [%5level] %4line : %m%n  -->
     <property name="log.pattern" value="%d{HH:mm:ss.SSS} [%5level] %4line : %m%n"/>
 
