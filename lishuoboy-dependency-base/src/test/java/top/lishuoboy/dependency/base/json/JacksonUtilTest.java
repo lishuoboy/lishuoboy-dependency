@@ -5,6 +5,7 @@ import cn.hutool.core.map.MapUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
@@ -52,4 +53,19 @@ public class JacksonUtilTest {
         Map<String, User> map = JacksonUtil.str2MapGenerics("{\"user1\":{\"id\":1,\"name\":\"硕\"},\"user2\":{\"id\":1,\"name\":\"硕\"}}", String.class, User.class);
         log.info("{}", map);
     }
+
+
+    @Test
+    public void bean2Bytes() {
+        log.info("{}", JacksonUtil.bean2Bytes(user));
+        log.info("{}", JacksonUtil.bean2Bytes(ListUtil.list(false, user, user)));
+        log.info("{}", JacksonUtil.bean2Bytes(MapUtil.builder("user1", user).put("user2", user).build()));
+    }
+
+    @Test
+    public void bytes2Bean() {
+        User user = JacksonUtil.bytes2Bean("{\"id\":1,\"name\":\"硕\"}".getBytes(StandardCharsets.UTF_8), User.class);
+        log.info("{}", user);
+    }
+
 }

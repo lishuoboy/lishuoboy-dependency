@@ -57,5 +57,14 @@ public class JacksonUtil {
         return resultMap;
     }
 
+    @SneakyThrows
+    public static byte[] bean2Bytes(Object obj) {
+        return mapper.writeValueAsBytes(obj);
+    }
 
+    @SneakyThrows
+    public static <T> T bytes2Bean(byte[] bytes, Class<T> beanType) {
+        T result = mapper.readValue(bytes, beanType);
+        return result;
+    }
 }
