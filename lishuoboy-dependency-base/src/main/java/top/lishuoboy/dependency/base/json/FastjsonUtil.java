@@ -1,4 +1,4 @@
-package top.lishuoboy.dependency.base.jackson;
+package top.lishuoboy.dependency.base.json;
 
 import com.alibaba.fastjson.JSON;
 

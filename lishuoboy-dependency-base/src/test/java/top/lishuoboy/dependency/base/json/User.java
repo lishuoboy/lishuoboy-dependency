@@ -1,4 +1,4 @@
-package top.lishuoboy.dependency.base.jackson;
+package top.lishuoboy.dependency.base.json;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

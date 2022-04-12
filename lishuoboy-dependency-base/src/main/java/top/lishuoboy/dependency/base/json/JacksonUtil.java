@@ -1,4 +1,4 @@
-package top.lishuoboy.dependency.base.jackson;
+package top.lishuoboy.dependency.base.json;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,4 +1,4 @@
-package top.lishuoboy.dependency.base.jackson;
+package top.lishuoboy.dependency.base.json;
 
 import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.map.MapUtil;
