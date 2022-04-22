@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.12.RELEASE</version>
+        <version>2.4.13</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>top.lishuoboy</groupId>
@@ -48,6 +48,7 @@
 
         <hutool.version>5.7.22</hutool.version>
         <mail.version>1.4.7</mail.version>
+        <jakarta-mail.version>1.6.7</jakarta-mail.version>
         <poi.version>5.0.0</poi.version>
         <poi-ooxml.version>5.0.0</poi-ooxml.version>
         <mybatis.version>3.5.5</mybatis.version>
@@ -65,6 +66,9 @@
         <javaee-web-api.version>8.0.1</javaee-web-api.version>
 
     </properties>
+
+    <dependencies>
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>
@@ -332,7 +336,9 @@
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
-            <!-- 2013年停更，使用下面的javax.mail -->
+            <!-- 1、2013年 mail 1.4.7 升级为 javax.mail，2018年 javax.mail 1.6.2升级为 jakarta.mail
+                 2、javax.mail 比 javax.mail-api 多了 com.sun.mail包
+                 3、hutool 用 javax.mail，sb自带的是 javax.mail-api -->
             <dependency>
                 <groupId>javax.mail</groupId>
                 <artifactId>mail</artifactId>
@@ -347,6 +353,16 @@
                 <groupId>javax.mail</groupId>
                 <artifactId>javax.mail-api</artifactId>
                 <version>${javax-mail.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.mail</groupId>
+                <artifactId>jakarta.mail</artifactId>
+                <version>${jakarta-mail.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.mail</groupId>
+                <artifactId>jakarta.mail-api</artifactId>
+                <version>${jakarta-mail.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.poi</groupId>
