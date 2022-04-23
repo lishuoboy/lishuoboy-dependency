@@ -1,39 +1,45 @@
 package top.lishuoboy.dependency.base.json;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 
-import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
- * Fastjson 工具类
+ * JSON 工具类
  *
  * @author lishuoboy
  * @date 2022-2-8
  */
 public class FastjsonUtil {
 
-    public static String bean2Str(Object obj) {
+    public static String toJsonStr(Object obj) {
         return JSON.toJSONString(obj);
     }
 
-    public static String bean2PrettyStr(Object obj) {
+    public static String toJsonPrettyStr(Object obj) {
         return JSON.toJSONString(obj, true);
     }
 
-    public static <T> T str2Bean(String jsonStr, Class<T> beanType) {
-        T result = JSON.parseObject(jsonStr, beanType);
-        return result;
+    public static <T> T toBean(String jsonStr, Class<T> beanClass) {
+        return JSON.parseObject(jsonStr, beanClass);
     }
 
-    public static <T> List<T> str2List(String jsonStr, Class<T> beanType) {
-        List<T> resultList = JSON.parseArray(jsonStr, beanType);
-        return resultList;
+    public static <T> List<T> toList(String jsonStr, TypeReference<List<T>> typeReference) {
+        return JSON.parseObject(jsonStr, typeReference.getType());
     }
 
-    /** 固定泛型 */
-    public static LinkedHashMap<String, Object> str2Map(String jsonStr) {
-        LinkedHashMap<String, Object> resultMap = JSON.parseObject(jsonStr, LinkedHashMap.class);
-        return resultMap;
+    public static <T> List<T> toList(String jsonStr, Class<T> beanClass) {
+        return JSON.parseArray(jsonStr, beanClass);
+    }
+
+    public static <K, V> Map<K, V> toMap(String jsonStr, TypeReference<Map<K, V>> typeReference) {
+        return JSON.parseObject(jsonStr, typeReference.getType());
+    }
+
+    public static Map<String, Object> toMap(String jsonStr) {
+        return toMap(jsonStr, new com.alibaba.fastjson.TypeReference<Map<String, Object>>() {
+        });
     }
 }

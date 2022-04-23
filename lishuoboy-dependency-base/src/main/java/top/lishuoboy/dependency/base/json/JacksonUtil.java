@@ -1,70 +1,66 @@
 package top.lishuoboy.dependency.base.json;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * Jackson 工具类
+ * JSON 工具类
  *
  * @author lishuoboy
  * @date 2022-1-10
  */
-@Slf4j
 public class JacksonUtil {
+    private static ObjectMapper mapper = new ObjectMapper();
 
-    private static final ObjectMapper mapper = new ObjectMapper();
+    static {
+//        JacksonUtil.mapper = mapper.registerModules(new JavaTimeModule());  // JavaTimeModule 支持 LocalDateTime、Instant
+//        mapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+    }
 
     @SneakyThrows
-    public static String bean2Str(Object obj) {
+    public static String toJsonStr(Object obj) {
         return mapper.writeValueAsString(obj);
     }
 
     @SneakyThrows
-    public static String bean2PrettyStr(Object obj) {
+    public static String toJsonPrettyStr(Object obj) {
         return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
     }
 
     @SneakyThrows
-    public static <T> T str2Bean(String jsonStr, Class<T> beanType) {
-        T result = mapper.readValue(jsonStr, beanType);
-        return result;
+    public static <T> T toBean(String jsonStr, Class<T> beanClass) {
+        return mapper.readValue(jsonStr, beanClass);
     }
 
     @SneakyThrows
-    public static <T> List<T> str2List(String jsonStr, Class<T> beanType) {
-        JavaType javaType = mapper.getTypeFactory().constructParametricType(List.class, beanType);
-        List<T> resultList = mapper.readValue(jsonStr, javaType);
-        return resultList;
-    }
-
-    /** 固定泛型 */
-    @SneakyThrows
-    public static Map<String, Object> str2Map(String jsonStr) {
-        Map<String, Object> resultMap = str2MapGenerics(jsonStr, String.class, Object.class);
-        return resultMap;
-    }
-
-    /** 泛型 */
-    @SneakyThrows
-    public static <K, V> Map<K, V> str2MapGenerics(String jsonStr, Class<K> keyType, Class<V> valueType) {
-        JavaType javaType = mapper.getTypeFactory().constructMapType(Map.class, keyType, valueType);
-        Map<K, V> resultMap = mapper.readValue(jsonStr, javaType);
-        return resultMap;
+    public static <T> List<T> toList(String jsonStr, TypeReference<List<T>> typeReference) {
+        return mapper.readValue(jsonStr, typeReference);
     }
 
     @SneakyThrows
-    public static byte[] bean2Bytes(Object obj) {
-        return mapper.writeValueAsBytes(obj);
+    public static <T> List<T> toList(String jsonStr, Class<T> beanClass) {
+        JavaType javaType = mapper.getTypeFactory().constructParametricType(List.class, beanClass);
+        return mapper.readValue(jsonStr, javaType);
     }
 
     @SneakyThrows
-    public static <T> T bytes2Bean(byte[] bytes, Class<T> beanType) {
-        T result = mapper.readValue(bytes, beanType);
-        return result;
+    public static <K, V> Map<K, V> toMap(String jsonStr, TypeReference<Map<K, V>> typeReference) {
+        return mapper.readValue(jsonStr, typeReference);
+    }
+
+    @SneakyThrows
+    public static <K, V> Map<K, V> toMap(String jsonStr, Class<K> keyClass, Class<V> valueClass) {
+        JavaType javaType = mapper.getTypeFactory().constructParametricType(Map.class, keyClass, valueClass);
+        return mapper.readValue(jsonStr, javaType);
+    }
+
+    @SneakyThrows
+    public static Map<String, Object> toMap(String jsonStr) {
+        return toMap(jsonStr, String.class, Object.class);
     }
 }

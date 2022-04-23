@@ -3,10 +3,9 @@ package top.lishuoboy.dependency.sb.spring;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.util.ObjectUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ConfigurableApplicationContext;
-import top.lishuoboy.dependency.base.json.FastjsonUtil;
+import top.lishuoboy.dependency.base.json.HuJsonUtil;
 import top.lishuoboy.dependency.base.str.MyStrPool;
 
 import java.io.File;
@@ -35,7 +34,7 @@ public class MyContextUtil {
      * @param beanNames 指定beanNames。不指定时获取context的全部bean
      */
     private static TreeMap<String, String> getBeans(ConfigurableApplicationContext context, List<String> beanNames) {
-        beanNames = ObjectUtil.isEmpty(beanNames) ? ListUtil.list(false, context.getBeanDefinitionNames()) : beanNames;
+        beanNames = beanNames == null ? ListUtil.list(false, context.getBeanDefinitionNames()) : beanNames;
         TreeMap<String, String> beanMap = new TreeMap();    // 按全限定类名排序
         for (String beanName : beanNames) {
             String fullClassName = context.getBean(beanName).getClass().getName();  // 注入bean名字
@@ -62,10 +61,10 @@ public class MyContextUtil {
         TreeMap beanMap = getBeans(context, null);
         List<String> beanNameList = new ArrayList(beanMap.values());
         if (printFullName) {
-            FileUtil.writeUtf8String(FastjsonUtil.bean2PrettyStr(beanMap), beansFile);
+            FileUtil.writeUtf8String(HuJsonUtil.toJsonPrettyStr(beanMap), beansFile);
             log.warn(MyStrPool.LOG_PRE + "输出目录=={}" + beansFile.getAbsolutePath());
         } else {
-            FileUtil.writeUtf8String(FastjsonUtil.bean2PrettyStr(beanNameList), beansNameFile);
+            FileUtil.writeUtf8String(HuJsonUtil.toJsonPrettyStr(beanNameList), beansNameFile);
             log.warn(MyStrPool.LOG_PRE + "输出目录=={}" + beansNameFile.getAbsolutePath());
         }
     }
@@ -89,14 +88,14 @@ public class MyContextUtil {
             printBeans(context);
             return;
         }
-        List<String> beansNameListOld = FastjsonUtil.str2List(FileUtil.readUtf8String(beansNameFile), String.class);
+        List<String> beansNameListOld = HuJsonUtil.toList(FileUtil.readUtf8String(beansNameFile), String.class);
         List beansNameListNew = getBeansName(context);
         List beansNameDisjunctionList = ListUtil.list(false, CollUtil.disjunction(beansNameListOld, beansNameListNew));
 
         if (printFullName) {
-            FileUtil.writeUtf8String(FastjsonUtil.bean2PrettyStr(getBeans(context, beansNameDisjunctionList)), beansNameDisjunctionFile);
+            FileUtil.writeUtf8String(HuJsonUtil.toJsonPrettyStr(getBeans(context, beansNameDisjunctionList)), beansNameDisjunctionFile);
         } else {
-            FileUtil.writeUtf8String(FastjsonUtil.bean2PrettyStr(beansNameDisjunctionList), beansNameDisjunctionFile);
+            FileUtil.writeUtf8String(HuJsonUtil.toJsonPrettyStr(beansNameDisjunctionList), beansNameDisjunctionFile);
         }
         log.warn(MyStrPool.LOG_PRE + "输出目录=={}" + beansNameDisjunctionFile.getAbsolutePath());
     }
