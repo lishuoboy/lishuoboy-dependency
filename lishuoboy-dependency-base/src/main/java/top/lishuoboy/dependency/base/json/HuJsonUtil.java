@@ -14,19 +14,19 @@ import java.util.Map;
  * @date 2022-4-22
  */
 public class HuJsonUtil {
-    private static JSONConfig jsonConfig = new JSONConfig();
+    private static final JSONConfig jsonConfig = JSONConfig.create().setOrder(true).setNatureKeyComparator();  // 默认 config
 
-    static {
-        jsonConfig.setOrder(true);
-//        jsonConfig.setDateFormat(DatePattern.UTC_PATTERN);
+    public static String toJsonStr(Object obj, JSONConfig jsonConfig, boolean prettyFormat) {
+        String jsonStr = JSONUtil.toJsonStr(obj, jsonConfig);
+        return prettyFormat ? JSONUtil.formatJsonStr(jsonStr) : jsonStr;  // JSONUtil.toJsonPrettyStr(obj) 不能传参jsonConfig
     }
 
     public static String toJsonStr(Object obj) {
-        return JSONUtil.toJsonStr(obj, jsonConfig);
+        return toJsonStr(obj, jsonConfig, false);
     }
 
     public static String toJsonPrettyStr(Object obj) {
-        return JSONUtil.formatJsonStr(toJsonStr(obj));   // JSONUtil.toJsonPrettyStr(obj) 不能传参jsonConfig
+        return toJsonStr(obj, jsonConfig, true);
     }
 
     public static <T> T toBean(String jsonStr, Class<T> beanClass) {

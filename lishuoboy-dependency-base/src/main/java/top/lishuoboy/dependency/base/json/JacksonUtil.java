@@ -3,6 +3,7 @@ package top.lishuoboy.dependency.base.json;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.SneakyThrows;
 
 import java.util.List;
@@ -15,21 +16,21 @@ import java.util.Map;
  * @date 2022-1-10
  */
 public class JacksonUtil {
-    private static ObjectMapper mapper = new ObjectMapper();
+    private static final ObjectMapper mapper = new ObjectMapper().registerModules(new JavaTimeModule());  // JavaTimeModule 支持 LocalDateTime、Instant
 
-    static {
-//        JacksonUtil.mapper = mapper.registerModules(new JavaTimeModule());  // JavaTimeModule 支持 LocalDateTime、Instant
-//        mapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+    @SneakyThrows
+    public static String toJsonStr(Object obj, ObjectMapper mapper, boolean prettyFormat) {
+        return prettyFormat ? mapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj) : mapper.writeValueAsString(obj);
     }
 
     @SneakyThrows
     public static String toJsonStr(Object obj) {
-        return mapper.writeValueAsString(obj);
+        return toJsonStr(obj, mapper, false);
     }
 
     @SneakyThrows
     public static String toJsonPrettyStr(Object obj) {
-        return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
+        return toJsonStr(obj, mapper, true);
     }
 
     @SneakyThrows

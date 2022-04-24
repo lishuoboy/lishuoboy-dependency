@@ -1,7 +1,9 @@
 package top.lishuoboy.dependency.base.json;
 
+import cn.hutool.core.util.ArrayUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import java.util.List;
 import java.util.Map;
@@ -14,12 +16,13 @@ import java.util.Map;
  */
 public class FastjsonUtil {
 
-    public static String toJsonStr(Object obj) {
-        return JSON.toJSONString(obj);
+    /** fastjson SerializerFeature详解  https://blog.csdn.net/lishuoboy/article/details/124394291 */
+    public static String toJsonStr(Object obj, SerializerFeature... features) {
+        return JSON.toJSONString(obj, features);
     }
 
-    public static String toJsonPrettyStr(Object obj) {
-        return JSON.toJSONString(obj, true);
+    public static String toJsonPrettyStr(Object obj, SerializerFeature... features) {
+        return toJsonStr(obj, ArrayUtil.addAll(features, new SerializerFeature[]{SerializerFeature.PrettyFormat}));
     }
 
     public static <T> T toBean(String jsonStr, Class<T> beanClass) {
@@ -39,7 +42,7 @@ public class FastjsonUtil {
     }
 
     public static Map<String, Object> toMap(String jsonStr) {
-        return toMap(jsonStr, new com.alibaba.fastjson.TypeReference<Map<String, Object>>() {
+        return toMap(jsonStr, new TypeReference<Map<String, Object>>() {
         });
     }
 }
