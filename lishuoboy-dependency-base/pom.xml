@@ -31,11 +31,6 @@
             <artifactId>lombok</artifactId>
             <!--            <optional>true</optional>-->
         </dependency>
-        <!-- 依赖了 jackson-databind -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-        </dependency>
 
         <!-- 2.2 sb-dependencies 已包含,且 sb-starter(test) 引入依赖 -->
         <dependency>

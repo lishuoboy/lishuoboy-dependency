@@ -30,7 +30,7 @@
         <!-- 2.2 sb-dependencies 已包含,且 sb-starter(test) 引入依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-json</artifactId>
         </dependency>
         <!-- 不需要，见3. -->
 

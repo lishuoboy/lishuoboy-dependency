@@ -1,4 +1,4 @@
-package top.lishuoboy.dependency.base.json;
+package top.lishuoboy.dependency.sb.json;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
