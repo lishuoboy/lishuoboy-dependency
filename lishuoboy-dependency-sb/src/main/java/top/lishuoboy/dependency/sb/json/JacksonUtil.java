@@ -14,7 +14,9 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import top.lishuoboy.dependency.base.json.HuJsonUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -25,9 +27,17 @@ import java.util.Map;
  * @author lishuoboy
  * @date 2022-1-10
  */
-@Slf4j
 public class JacksonUtil {
-    private static final JsonMapper mapper = JsonMapper.builder().addModules(new JavaTimeModule()).build();  // JavaTimeModule 支持 LocalDateTime、Instant
+    private static final Logger log = LoggerFactory.getLogger(HuJsonUtil.class);
+
+    // 默认的build，提供外部使用
+    public static final JsonMapper.Builder defaultMapperBuilder = JsonMapper.builder()
+        .addModules(new JavaTimeModule())                           // JavaTimeModule 支持 LocalDateTime、Instant
+        .enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY)       // 启用 Bean按照key名称自然排序
+        .enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS)     // 启用 Map 按照key名称自然排序
+        .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);         // 禁用空bean失败
+
+    private static final JsonMapper mapper = defaultMapperBuilder.build();
 
     @SneakyThrows
     public static String toJsonStr(Object obj, JsonMapper mapper, boolean prettyFormat) {
@@ -76,7 +86,7 @@ public class JacksonUtil {
         return toMap(jsonStr, String.class, Object.class);
     }
 
-    static {
+    public static void printDefaultFeature() {
         /**
          * true==AUTO_CLOSE_TARGET
          * true==AUTO_CLOSE_JSON_CONTENT
@@ -90,7 +100,7 @@ public class JacksonUtil {
          * false==IGNORE_UNKNOWN
          */
         for (JsonGenerator.Feature value : JsonGenerator.Feature.values()) {
-            log.trace("{}==JsonGenerator.Feature.{}", value.enabledByDefault(), value);
+            log.warn("{}==JsonGenerator.Feature.{}", value.enabledByDefault(), value);
         }
         /**
          * true==AUTO_CLOSE_SOURCE
@@ -110,7 +120,7 @@ public class JacksonUtil {
          * true==INCLUDE_SOURCE_IN_LOCATION
          */
         for (JsonParser.Feature value : JsonParser.Feature.values()) {
-            log.trace("{}==JsonParser.Feature.{}", value.enabledByDefault(), value);
+            log.warn("{}==JsonParser.Feature.{}", value.enabledByDefault(), value);
         }
         /**
          * true ==QUOTE_FIELD_NAMES        // 确定是否使用双引号引用 JSON 对象字段名称的功能，如 JSON 规范所指定的那样。添加了禁用引用的功能以支持通常不期望它们的用例，这通常在直接从 Javascript 使用时发生。
@@ -119,7 +129,7 @@ public class JacksonUtil {
          * false==ESCAPE_NON_ASCII         // 指定超过 7 位 ASCII 范围（即 128 及以上的代码点）的所有字符都需要使用反斜杠转义输出的功能。
          */
         for (JsonWriteFeature value : JsonWriteFeature.values()) {
-            log.trace("{}==JsonWriteFeature.{}", value.enabledByDefault(), value);
+            log.warn("{}==JsonWriteFeature.{}", value.enabledByDefault(), value);
         }
         /**
          * false==ALLOW_JAVA_COMMENTS                       // 启用该功能允许识别和处理“C 注释”（/ * ... * /）和“C++注释”（// ....）
@@ -135,7 +145,7 @@ public class JacksonUtil {
          * false==ALLOW_TRAILING_COMMA                      //  确定是否JsonParser允许在最终值（在数组中）或成员（在对象中）之后的单个尾随逗号的功能。这些逗号将被忽略。   例如，启用此功能时，[true,true,]` is equivalent to `[true, true]等效{"a": true,}于{"a": true}.
          */
         for (JsonReadFeature value : JsonReadFeature.values()) {
-            log.trace("{}==JsonReadFeature.{}", value.enabledByDefault(), value);
+            log.warn("{}==JsonReadFeature.{}", value.enabledByDefault(), value);
         }
         /**
          * false==WRAP_ROOT_VALUE
@@ -165,7 +175,7 @@ public class JacksonUtil {
          * false==USE_EQUALITY_FOR_OBJECT_ID            // 对对象 ID 使用相等性
          */
         for (SerializationFeature value : SerializationFeature.values()) {
-            log.trace("{}==SerializationFeature.{}", value.enabledByDefault(), value);
+            log.warn("{}==SerializationFeature.{}", value.enabledByDefault(), value);
         }
         /**
          * false==USE_BIG_DECIMAL_FOR_FLOATS
@@ -198,7 +208,7 @@ public class JacksonUtil {
          * true==EAGER_DESERIALIZER_FETCH
          */
         for (DeserializationFeature value : DeserializationFeature.values()) {
-            log.trace("{}==DeserializationFeature.{}", value.enabledByDefault(), value);
+            log.warn("{}==DeserializationFeature.{}", value.enabledByDefault(), value);
         }
         /**
          * true==AUTO_CLOSE_TARGET
@@ -209,7 +219,7 @@ public class JacksonUtil {
          * false==IGNORE_UNKNOWN
          */
         for (StreamWriteFeature value : StreamWriteFeature.values()) {
-            log.trace("{}==StreamWriteFeature.{}", value.enabledByDefault(), value);
+            log.warn("{}==StreamWriteFeature.{}", value.enabledByDefault(), value);
         }
         /**
          * true==AUTO_CLOSE_SOURCE
@@ -218,7 +228,7 @@ public class JacksonUtil {
          * true==INCLUDE_SOURCE_IN_LOCATION
          */
         for (StreamReadFeature value : StreamReadFeature.values()) {  // 基本全用的 JsonParser.Feature
-            log.trace("{}==StreamReadFeature.{}", value.enabledByDefault(), value);
+            log.warn("{}==StreamReadFeature.{}", value.enabledByDefault(), value);
         }
         /**
          * true==INCLUDE_SOURCE_IN_LOCATION
@@ -251,7 +261,8 @@ public class JacksonUtil {
          * true==IGNORE_MERGE_FOR_UNMERGEABLE
          */
         for (MapperFeature value : MapperFeature.values()) {
-            log.trace("{}==MapperFeature.{}", value.enabledByDefault(), value);
+            log.warn("{}==MapperFeature.{}", value.enabledByDefault(), value);
         }
     }
+
 }

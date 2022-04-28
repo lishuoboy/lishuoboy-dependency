@@ -15,14 +15,30 @@ import java.util.Map;
  * @date 2022-2-8
  */
 public class FastjsonUtil {
+    // 默认的 featureList，提供外部使用
+    private static final SerializerFeature[] defaultFeatureArr = new SerializerFeature[]{
+//        SerializerFeature.DisableCircularReferenceDetect,   // 禁用自引用
+        SerializerFeature.SortField,                // 启用 Bean按照key名称自然排序
+        SerializerFeature.MapSortField,             // 启用 Map 按照key名称自然排序
+        SerializerFeature.WriteMapNullValue,        // 输出null 对象
+        SerializerFeature.IgnoreErrorGetter         // 忽略get异常
+    };
 
     /** fastjson SerializerFeature详解  https://blog.csdn.net/lishuoboy/article/details/124394291 */
-    public static String toJsonStr(Object obj, SerializerFeature... features) {
+    public static String toJsonStr(Object obj, boolean isUseDefaultFeatures, SerializerFeature... features) {
+        if (isUseDefaultFeatures) {
+            return JSON.toJSONString(obj, ArrayUtil.distinct(ArrayUtil.addAll(defaultFeatureArr, features)));
+        }
         return JSON.toJSONString(obj, features);
     }
 
-    public static String toJsonPrettyStr(Object obj, SerializerFeature... features) {
-        return toJsonStr(obj, ArrayUtil.addAll(features, new SerializerFeature[]{SerializerFeature.PrettyFormat}));
+    /** fastjson SerializerFeature详解  https://blog.csdn.net/lishuoboy/article/details/124394291 */
+    public static String toJsonStr(Object obj) {
+        return toJsonStr(obj, true);
+    }
+
+    public static String toJsonPrettyStr(Object obj) {
+        return toJsonStr(obj, true, SerializerFeature.PrettyFormat);
     }
 
     public static <T> T toBean(String jsonStr, Class<T> beanClass) {
