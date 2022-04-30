@@ -18,3 +18,8 @@ logging:
     #  file:
     # 日志目录和文件名，可以是相对目录，前面是‘/’或盘符是绝对目录
 #    name: ${user.dir}/.log/log.log
+
+spring:
+  devtools:
+    livereload:
+      port: ${random.int(30000,60000)}    # 端口随机，大概率防止端口冲突
