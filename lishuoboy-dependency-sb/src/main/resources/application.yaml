@@ -15,9 +15,8 @@ logging:
     console: '%d{HH:mm:ss.SSS} [%clr(%5p)] %clr(%4line){magenta} : %m%n'
     file: '%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID} [%30.30t] %line %-100.100logger{99}.%-30.30method: %m%n'
 
-    #  file:
     # 日志目录和文件名，可以是相对目录，前面是‘/’或盘符是绝对目录
-#    name: ${user.dir}/.log/log.log
+#      name: ${user.dir}/.log/log.log
 
 spring:
   devtools:
