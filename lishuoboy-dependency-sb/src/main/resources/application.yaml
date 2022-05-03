@@ -5,7 +5,7 @@ logging:
   # spring 非核心 日志级别
   level:
     root: info
-    top: trace
+    top: debug
   pattern:
     # SB console     默认格式  %d{yyyy-MM-dd HH:mm:ss.SSS} %clr(%5p) %clr(${PID}){magenta} --- [%15.15t] %clr(%-40.40logger{39}){cyan} : %m%n %wEx
     # SB file        默认格式  %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID} --- [%t] %-40.40logger{39} : %m%n %wEx
