@@ -1,0 +1,2 @@
+#stater?????
+#org.springframework.boot.autoconfigure.EnableAutoConfiguration=top.lishuoboy.dependency.sb.autoconfigure.MyAutoConfiguration
