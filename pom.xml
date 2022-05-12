@@ -519,12 +519,12 @@
 
     <build>
         <plugins>
-            <!-- 显示指定 deploy 插件版本，其他版本报错 -->
+            <!-- 显示指定 deploy 插件版本，其他版本报错(sb高版本不需要，因为已经引入高版本的deploy插件) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
             </plugin>
-            <!-- deploy jar 和 pom 同时把源码 deploy  -->
+            <!-- 生成 source， package阶段就会执行 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -537,6 +537,24 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- 生成 javadoc， package阶段就会执行 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- 跳过 JAVA8 变态的注释检查-->
+                    <doclint>none</doclint>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
