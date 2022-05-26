@@ -62,10 +62,10 @@ public class MyContextUtil {
         List<String> beanNameList = new ArrayList(beanMap.values());
         if (printFullName) {
             FileUtil.writeUtf8String(HuJsonUtil.toJsonPrettyStr(beanMap), beansFile);
-            log.warn(MyStrPool.LOG_PRE + "输出目录=={}" + beansFile.getAbsolutePath());
+            log.warn(MyStrPool.LOG_PRE + "输出目录=={}", beansFile.getAbsolutePath());
         } else {
             FileUtil.writeUtf8String(HuJsonUtil.toJsonPrettyStr(beanNameList), beansNameFile);
-            log.warn(MyStrPool.LOG_PRE + "输出目录=={}" + beansNameFile.getAbsolutePath());
+            log.warn(MyStrPool.LOG_PRE + "输出目录=={}", beansNameFile.getAbsolutePath());
         }
     }
 
@@ -97,7 +97,7 @@ public class MyContextUtil {
         } else {
             FileUtil.writeUtf8String(HuJsonUtil.toJsonPrettyStr(beansNameDisjunctionList), beansNameDisjunctionFile);
         }
-        log.warn(MyStrPool.LOG_PRE + "输出目录=={}" + beansNameDisjunctionFile.getAbsolutePath());
+        log.warn(MyStrPool.LOG_PRE + "输出目录=={}", beansNameDisjunctionFile.getAbsolutePath());
     }
 
     /**

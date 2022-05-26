@@ -7,13 +7,13 @@ logging:
     root: info
     top: debug
   pattern:
-    # SB console     默认格式  %d{yyyy-MM-dd HH:mm:ss.SSS} %clr(%5p) %clr(${PID}){magenta} --- [%15.15t] %clr(%-40.40logger{39}){cyan} : %m%n %wEx
-    # SB file        默认格式  %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID} --- [%t] %-40.40logger{39} : %m%n %wEx
-    # LS SB file     生产格式  %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID} [%30.30t] %line %-100.100logger{99}.%-30.30method: %m%n
-    # LS SB console  测试格式1 %d{HH:mm:ss.SSS} [%clr(%5p)] %clr(%4line){magenta} : %m%n
-    # LS SB console  测试格式2 %d{HH:mm:ss.SSS} [%clr(%5p)] %clr(${PID}){magenta} [%15.15t] %clr(%-40.40logger{39}.%-30.30method){cyan} %clr(%4line){blue} : %m%n
-    console: '%d{HH:mm:ss.SSS} [%clr(%5p)] %clr(%4line){magenta} : %m%n'
-    file: '%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID} [%30.30t] %line %-100.100logger{99}.%-30.30method: %m%n'
+    # 输出 文件名、输出类、方法、行号 并不是特别快，因此，除非执行速度不是问题，否则应避免使用它。
+    # SB console     默认格式    %clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}
+    # SB file        默认格式         %d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}              ${LOG_LEVEL_PATTERN:-%5p}       ${PID:- }                ---                   [%t]              %-40.40logger{39}             :         %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}
+    # SB             清除格式    %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } --- [%15.15t] %-40.40logger{39} : %m%n%wEx
+    # logback        默认格式    %d{HH:mm:ss.SSS} [%t] %5p %logger{36} - %m%n
+    console: ${my.log.p2}
+    file: ${my.log.p5}
 
     # 日志目录和文件名，可以是相对目录，前面是‘/’或盘符是绝对目录
 #      name: ${user.dir}/.log/log.log
