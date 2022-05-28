@@ -4,7 +4,7 @@ trace: false
 logging:
   # spring 非核心 日志级别
   level:
-    root: debug
+    root: info
     top.lishuoboy: trace
   pattern:
     # 输出 文件名、输出类、方法、行号 并不是特别快，因此，除非执行速度不是问题，否则应避免使用它。
