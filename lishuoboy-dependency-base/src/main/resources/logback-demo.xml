@@ -8,10 +8,10 @@
     <!-- SB             清除格式    %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } -&#45;&#45; [%15.15t] %-40.40logger{39} : %m%n%wEx-->
     <!-- logback        默认格式    %d{HH:mm:ss.SSS} [%t] %5p %logger{36} - %m%n-->
     <property name="p1" value="%m%n%xEx"/>
-    <property name="p2" value="[%yellow(%-5p)] %blue(%4line) : %m%n%xEx"/>
-    <property name="p3" value="[%yellow(%-5p)] %cyan(%120.120logger{119}.%-60.60method) %blue(%4line) : %m%n%xEx"/>
-    <property name="p4" value="%d{HH:mm:ss.SSS} [%yellow(%-5p)] %blue(%4line) : %m%n%xEx"/>
-    <property name="p5" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%yellow(%-5p)] %magenta(${PID:- }) [%40.40t] %cyan(%120.120logger{119}.%-60.60method) %blue(%4line) : %m%n%xEx"/>
+    <property name="p2" value="%yellow(%-5p) %blue(%4line): %m%n%xEx"/>
+    <property name="p3" value="%d{HH:mm:ss.SSS} %yellow(%-5p) %blue(%4line): %m%n%xEx"/>
+    <property name="p4" value="%d{HH:mm:ss.SSS} %yellow(%-5p) %cyan(%60.60logger{59}.%-30.99method) %blue(%4line): %m%n%xEx"/>
+    <property name="p5" value="%d{MM-dd HH:mm:ss.SSS} %yellow(%-5p) %magenta(${PID:- }) [%40.40t] %cyan(%80.80logger{79}.%-30.99method) %blue(%4line): %m%n%xEx"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
