@@ -22,3 +22,5 @@ spring:
   devtools:
     livereload:
       port: ${random.int(30000,60000)}    # 端口随机，大概率防止端口冲突
+  profiles:
+    include: logback

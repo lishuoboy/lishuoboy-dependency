@@ -2,20 +2,10 @@
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                xsi:schemaLocation="http://ch.qos.logback/xml/ns/logback https://raw.githubusercontent.com/enricopulatzo/logback-XSD/master/src/main/xsd/logback.xsd">
 
-    <!-- 输出 文件名、输出类、方法、行号 并不是特别快，因此，除非执行速度不是问题，否则应避免使用它。-->
-    <!-- SB console     默认格式    %clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(-&#45;&#45;){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}-->
-    <!-- SB file        默认格式         %d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}              ${LOG_LEVEL_PATTERN:-%5p}       ${PID:- }                -&#45;&#45;                   [%t]              %-40.40logger{39}             :         %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}-->
-    <!-- SB             清除格式    %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } -&#45;&#45; [%15.15t] %-40.40logger{39} : %m%n%wEx-->
-    <!-- logback        默认格式    %d{HH:mm:ss.SSS} [%t] %5p %logger{36} - %m%n-->
-    <property name="p1" value="%m%n%xEx"/>
-    <property name="p2" value="%yellow(%-5p) %blue(%4line): %m%n%xEx"/>
-    <property name="p3" value="%d{HH:mm:ss.SSS} %yellow(%-5p) %blue(%4line): %m%n%xEx"/>
-    <property name="p4" value="%d{HH:mm:ss.SSS} %yellow(%-5p) %cyan(%60.60logger{59}.%-30.99method) %blue(%4line): %m%n%xEx"/>
-    <property name="p5" value="%d{MM-dd HH:mm:ss.SSS} %yellow(%-5p) %magenta(${PID:- }) [%40.40t] %cyan(%80.80logger{79}.%-30.99method) %blue(%4line): %m%n%xEx"/>
-
+    <property resource="application-logback.properties"/>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>${p2}</pattern>
+            <pattern>${my.log.p2}</pattern>
         </encoder>
     </appender>
 
