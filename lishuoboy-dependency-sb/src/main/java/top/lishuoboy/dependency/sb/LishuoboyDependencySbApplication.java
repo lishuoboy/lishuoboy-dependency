@@ -3,7 +3,7 @@ package top.lishuoboy.dependency.sb;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import top.lishuoboy.dependency.sb.spring.MyContextUtil;
+import top.lishuoboy.dependency.base.spring.MyContextUtil;
 
 @SpringBootApplication
 public class LishuoboyDependencySbApplication {

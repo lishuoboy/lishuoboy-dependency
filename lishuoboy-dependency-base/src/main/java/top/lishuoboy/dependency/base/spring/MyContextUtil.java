@@ -1,10 +1,10 @@
-package top.lishuoboy.dependency.sb.spring;
+package top.lishuoboy.dependency.base.spring;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.io.FileUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.ApplicationContext;
 import top.lishuoboy.dependency.base.json.HuJsonUtil;
 import top.lishuoboy.dependency.base.str.MyStrPool;
 
@@ -33,7 +33,7 @@ public class MyContextUtil {
      *
      * @param beanNames 指定beanNames。不指定时获取context的全部bean
      */
-    private static TreeMap<String, String> getBeans(ConfigurableApplicationContext context, List<String> beanNames) {
+    private static TreeMap<String, String> getBeans(ApplicationContext context, List<String> beanNames) {
         beanNames = beanNames == null ? ListUtil.list(false, context.getBeanDefinitionNames()) : beanNames;
         TreeMap<String, String> beanMap = new TreeMap();    // 按全限定类名排序
         for (String beanName : beanNames) {
@@ -46,7 +46,7 @@ public class MyContextUtil {
     /**
      * 输出 spring 加载的 beans(注入IOC的 bean的名字)，按照全限定类名排序
      */
-    public static ArrayList getBeansName(ConfigurableApplicationContext context) {
+    public static ArrayList getBeansName(ApplicationContext context) {
         return new ArrayList(getBeans(context, null).values());
     }
 
@@ -57,7 +57,7 @@ public class MyContextUtil {
      *
      * @param printFullName 是否包含全限定类名
      */
-    public static void printBeans(ConfigurableApplicationContext context, boolean printFullName) {
+    public static void printBeans(ApplicationContext context, boolean printFullName) {
         TreeMap beanMap = getBeans(context, null);
         List<String> beanNameList = new ArrayList(beanMap.values());
         if (printFullName) {
@@ -72,7 +72,7 @@ public class MyContextUtil {
     /**
      * 输出 spring 加载的 beans(注入IOC的bean的名字)，按照全限定类名排序
      */
-    public static void printBeans(ConfigurableApplicationContext context) {
+    public static void printBeans(ApplicationContext context) {
         printBeans(context, false);
     }
 
@@ -82,7 +82,7 @@ public class MyContextUtil {
      * 1.清除tmp目录
      * 2.调用 printBeansDisjunction()，添加或删除依赖，再次调用 printBeansDisjunction()
      */
-    public static void printBeansDisjunction(ConfigurableApplicationContext context, boolean printFullName) {
+    public static void printBeansDisjunction(ApplicationContext context, boolean printFullName) {
         log.warn("不能在之前调用 MyContextUtil.printBeans(context);");
         if (!beansNameFile.exists()) {
             printBeans(context);
@@ -105,7 +105,7 @@ public class MyContextUtil {
      * 1.清除tmp目录
      * 2.调用 printBeansDisjunction()，添加依赖，再次调用 printBeansDisjunction()
      */
-    public static void printBeansDisjunction(ConfigurableApplicationContext context) {
+    public static void printBeansDisjunction(ApplicationContext context) {
         printBeansDisjunction(context, false);
     }
 }
