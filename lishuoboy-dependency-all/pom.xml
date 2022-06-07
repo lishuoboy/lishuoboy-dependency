@@ -12,7 +12,7 @@
 
     <dependencies>
 
-        <!-- 1  compile 系列() -->
+        <!-- 1  compile 系列 -->
         <!-- commons 系列，start，按流行度排序  -->
         <dependency>
             <groupId>commons-io</groupId>
@@ -218,7 +218,9 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
         </dependency>
-        <!-- 2013年停更，使用下面的javax.mail -->
+        <!-- 1、2013年 mail 1.4.7 升级为 javax.mail，2018年 javax.mail 1.6.2升级为 jakarta.mail
+             2、javax.mail 比 javax.mail-api 多了 com.sun.mail包
+             3、hutool 用 javax.mail，sb自带的是 javax.mail-api -->
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
@@ -226,6 +228,19 @@
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>javax.mail-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.mail</groupId>
+            <artifactId>jakarta.mail-api</artifactId>
+            <version>${jakarta-mail.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -243,6 +258,10 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -305,7 +324,13 @@
             <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- servlet规范实现 api 2 -->
+        <!-- servlet规范实现 api，tomcat内置,与servlet规范版本一致，4.0.2之后的版本改为jakarta -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- servlet规范实现 api 2,使用量极低 -->
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -336,24 +361,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <!--
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.1.2</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>-->
-
 </project>

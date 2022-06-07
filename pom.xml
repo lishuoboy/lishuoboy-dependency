@@ -243,11 +243,11 @@
             </dependency>
             <!-- commons-logging，2014年停更，上面已经有啦 -->
             <!--
-                        <dependency>
-                            <groupId>commons-logging</groupId>
-                            <artifactId>commons-logging</artifactId>
-                            <version>${commons-logging.version}</version>
-                        </dependency>-->
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>${commons-logging.version}</version>
+            </dependency>-->
             <!-- commons-logging  jdklog连接器 不需要  -->
             <!-- commons-logging log4j2连接器  -->
             <dependency>
@@ -282,11 +282,11 @@
             </dependency>
             <!-- 2010年停更，上面已经有啦 -->
             <!--
-                        <dependency>
-                            <groupId>commons-dbcp</groupId>
-                            <artifactId>commons-dbcp</artifactId>
-                            <version>${commons-dbcp.version}</version>
-                        </dependency>-->
+            <dependency>
+                <groupId>commons-dbcp</groupId>
+                <artifactId>commons-dbcp</artifactId>
+                <version>${commons-dbcp.version}</version>
+            </dependency>-->
             <dependency>
                 <groupId>c3p0</groupId>
                 <artifactId>c3p0</artifactId>
@@ -379,19 +379,16 @@
                 <artifactId>httpclient</artifactId>
                 <version>${httpclient.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis</artifactId>
                 <version>${mybatis.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper</artifactId>
                 <version>${pagehelper.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
@@ -413,25 +410,24 @@
                 <version>${selenium.version}</version>
             </dependency>
 
-            <!-- jxbrowser-win64，收费。内部依赖了 jxbrowser -->
+            <!-- jxbrowser-win64，收费，内部依赖了 jxbrowser。太大了，70M -->
             <dependency>
                 <groupId>com.teamdev.jxbrowser</groupId>
                 <artifactId>jxbrowser-win64</artifactId>
                 <version>${jxbrowser-win64.version}</version>
             </dependency>
             <!-- jxbrowser，免费 -->
-            <!--            <dependency>
-                            <groupId>com.teamdev.jxbrowser</groupId>
-                            <artifactId>jxbrowser</artifactId>
-                            <version>${jxbrowser-6.version}</version>
-                        </dependency>-->
+            <dependency>
+                <groupId>com.teamdev.jxbrowser</groupId>
+                <artifactId>jxbrowser</artifactId>
+                <version>${jxbrowser-6.version}</version>
+            </dependency>
             <!-- jxbrowser-win64，免费 -->
-            <!--            <dependency>
-                            <groupId>com.teamdev.jxbrowser</groupId>
-                            <artifactId>jxbrowser-win64</artifactId>
-                            <version>${jxbrowser-win64-6.version}</version>
-                        </dependency>-->
-
+            <dependency>
+                <groupId>com.teamdev.jxbrowser</groupId>
+                <artifactId>jxbrowser-win64</artifactId>
+                <version>${jxbrowser-win64-6.version}</version>
+            </dependency>
             <!-- javacv-platform  依赖了 opencv-platform。 太大了 800M  -->
             <dependency>
                 <groupId>org.bytedeco</groupId>
@@ -454,7 +450,6 @@
                 <version>${cglib.version}</version>
             </dependency>
 
-
             <!-- 2  provided 系列 -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -475,6 +470,13 @@
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
                 <version>${servlet-api.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- servlet规范实现 api，tomcat内置,与servlet规范版本一致，4.0.2之后的版本改为jakarta -->
+            <dependency>
+                <groupId>jakarta.servlet</groupId>
+                <artifactId>jakarta.servlet-api</artifactId>
+                <version>${jakarta-servlet.version}</version>
                 <scope>provided</scope>
             </dependency>
             <!-- servlet规范实现 api 2，使用量极低 -->
@@ -511,7 +513,6 @@
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-engine</artifactId>
                 <version>${junit-jupiter.version}</version>
-
                 <scope>test</scope>
             </dependency>
         </dependencies>
