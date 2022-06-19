@@ -1,6 +1,7 @@
 package top.lishuoboy.dependency.base.db;
 
 import cn.hutool.core.io.resource.ResourceUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.DbUtil;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +23,7 @@ public class MyDbUtil {
     @SneakyThrows
     public static void resetData(DataSource dataSource, String resourceUtf8) {
         log.info("重置DB数据 start");
-        String[] sqlArr = ResourceUtil.readUtf8Str(resourceUtf8).split(";");
+        String[] sqlArr = StrUtil.trimToEmpty(ResourceUtil.readUtf8Str(resourceUtf8)).split(";");  // sql文件最后一个分号后面不能有空白
         int[] AffectedCountArr = DbUtil.use(dataSource).executeBatch(sqlArr);
         log.info("重置DB数据 end。受影响记录数=={}", AffectedCountArr);
     }
