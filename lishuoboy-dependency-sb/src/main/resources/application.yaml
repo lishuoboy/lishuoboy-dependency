@@ -21,6 +21,9 @@ logging:
 spring:
   devtools:
     livereload:
-      port: ${random.int(30000,60000)}    # 端口随机，大概率防止端口冲突
+      port: ${random.int(30000,60000)}    # 端口随机，大概率防止端口冲突。默认为 35729
+    restart:
+      # 以下配置可以防止devtool 总是报404,默认时间太短，还没编译完成就重启了
+      poll-interval: 100s                # 在轮询类路径更改之间等待的时间量。默认 1s
   profiles:
     include: logback
