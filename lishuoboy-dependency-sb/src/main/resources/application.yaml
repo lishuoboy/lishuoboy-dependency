@@ -10,7 +10,7 @@ logging:
     # 输出 文件名、输出类、方法、行号 并不是特别快，因此，除非执行速度不是问题，否则应避免使用它。
     # SB console     默认格式    %clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}
     # SB file        默认格式         %d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}              ${LOG_LEVEL_PATTERN:-%5p}       ${PID:- }                ---                   [%t]              %-40.40logger{39}             :         %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}
-    # SB             清除格式    %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } --- [%15.15t] %-40.40logger{39} : %m%n%wEx
+    # SB             清除颜色    %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } --- [%15.15t] %-40.40logger{39} : %m%n%wEx
     # logback        默认格式    %d{HH:mm:ss.SSS} [%t] %5p %logger{36} - %m%n
     console: ${my.log.p2}
     file: ${my.log.p5}
