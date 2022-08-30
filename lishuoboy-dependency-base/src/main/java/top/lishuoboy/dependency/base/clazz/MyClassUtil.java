@@ -74,7 +74,9 @@ public class MyClassUtil {
         for (URL url : urls) {
             if (url.toURI().getScheme().equals("file")) {//判断Scheme是不是file
                 File file = new File(url.toURI());
-                if (!file.exists()) continue;//是存在
+                if (!file.exists()) {
+                    continue;//是存在
+                }
                 if (file.isDirectory()) {//如果是目录
                     Files.walkFileTree(file.toPath(), new SimpleFileVisitor<Path>() {//遍历所有文件
                         @Override
@@ -96,7 +98,9 @@ public class MyClassUtil {
                     Enumeration<JarEntry> entries = jarFile.entries();
                     while (entries.hasMoreElements()) {//遍历所有文件
                         JarEntry jarEntry = entries.nextElement();
-                        if (!jarEntry.getName().endsWith(".class")) continue;//判断后缀是否为class
+                        if (!jarEntry.getName().endsWith(".class")) {
+                            continue;//判断后缀是否为class
+                        }
                         String replace = jarEntry.getName().replace("/", ".");//把路径替换为.
                         classes.add(replace.substring(0, replace.length() - 6));//去掉后缀
                     }
