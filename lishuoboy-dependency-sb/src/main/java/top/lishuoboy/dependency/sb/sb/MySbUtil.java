@@ -28,11 +28,11 @@ public class MySbUtil {
         String path = context.getEnvironment().getProperty("server.servlet.context-path", "/");
 
         log.info(""
-                + "\n==========启动成功=================================================="
+                + "\n====================启动成功===================="
                 + "\n\t启动用时:\t {}"
                 + "\n\t远程地址:\t http://{}:{}{}"
                 + "\n\t本地地址:\t http://localhost:{}{}"
-                + "\n==========启动成功==================================================\n"
+                + "\n====================启动成功====================\n"
             , duration, ip, port, path, port, path);
     }
 }
