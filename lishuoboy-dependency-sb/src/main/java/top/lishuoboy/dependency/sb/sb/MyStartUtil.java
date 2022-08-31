@@ -18,9 +18,10 @@ public class MyStartUtil {
         String path = context.getEnvironment().getProperty("server.servlet.context-path", "/");
 
         log.info(""
-            + "\n===启动成功============"
-            + "\n===远程访问地址 http://{}:{}{}"
-            + "\n===本地访问地址 http://127.0.0.1:{}{}"
-            + "\n===启动成功============\n", ip, port, path, port, path);
+                + "\n=====启动成功=================================================="
+                + "\n=====远程访问地址 http://{}:{}{}"
+                + "\n=====本地访问地址 http://127.0.0.1:{}{}"
+                + "\n=====启动成功==================================================\n"
+            , ip, port, path, port, path);
     }
 }
