@@ -1,8 +1,8 @@
 package top.lishuoboy.dependency.sb.sb;
 
+import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.date.BetweenFormatter;
 import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.lang.Console;
 import cn.hutool.core.net.NetUtil;
 import cn.hutool.core.util.RuntimeUtil;
 import cn.hutool.core.util.StrUtil;
@@ -40,11 +40,11 @@ public class MySbUtil {
 //                + "\n\t本地地址:\t {}"
 //                + "\n====================启动成功====================\n"
 //            , duration, remoteUrl, localUrl);
-        MyConsoleUtil.colorPrint(MyConsoleUtil.FONT_GREEN, "====================启动成功====================");
-        Console.log("\t启动用时:\t {}", duration);
-        Console.log("\t远程地址:\t {}", remoteUrl);
-        Console.log("\t本地地址:\t {}", localUrl);
-        MyConsoleUtil.colorPrint(MyConsoleUtil.FONT_GREEN, "====================启动成功====================");
+        MyConsoleUtil.colorPrint("====================启动成功====================", ListUtil.list(false, MyConsoleUtil.GREEN2, MyConsoleUtil.BG_BLACK, MyConsoleUtil.STYLE_BOLD));
+        MyConsoleUtil.colorPrint("\t启动用时" + MyConsoleUtil.RESET + ":\t {}", ListUtil.list(false, MyConsoleUtil.STYLE_BOLD), duration);
+        MyConsoleUtil.colorPrint("\t启动用时" + MyConsoleUtil.RESET + ":\t {}", ListUtil.list(false, MyConsoleUtil.STYLE_BOLD), remoteUrl);
+        MyConsoleUtil.colorPrint("\t本地地址" + MyConsoleUtil.RESET + ":\t {}", ListUtil.list(false, MyConsoleUtil.STYLE_BOLD), localUrl);
+        MyConsoleUtil.colorPrint("====================启动成功====================", ListUtil.list(false, MyConsoleUtil.GREEN2, MyConsoleUtil.BG_BLACK, MyConsoleUtil.STYLE_BOLD));
 
         if (openUrl) {
             RuntimeUtil.exec("cmd /c start " + remoteUrl);  // 打开网址
