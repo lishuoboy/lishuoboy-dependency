@@ -1,9 +1,6 @@
 package top.lishuoboy.dependency.base.system;
 
-import cn.hutool.core.lang.Console;
 import org.junit.Test;
-
-import java.util.List;
 
 /**
  * 彩色日志输出打印
@@ -80,14 +77,28 @@ public class MyConsoleUtil {
     /**
      * 彩色打印
      *
-     * @param template 文本模板，被替换的部分用 {} 表示
-     * @param styles   样式们
-     * @param values   值
+     * @param styles 样式们
+     * @param text   文本
      */
-    public static void colorPrint(String template, List<String> styles, Object... values) {
+    public static void colorPrint(String text, String... styles) {
+        String styleText = "";
         for (String style : styles) {
-            System.out.print(style);
+            styleText += style;
         }
-        Console.log(template + RESET, values);
+        System.out.println(styleText + text + RESET);
+    }
+
+    /**
+     * 获取彩色文本
+     *
+     * @param styles 样式们
+     * @param text   文本
+     */
+    public static String getColorText(String text, String... styles) {
+        String styleText = "";
+        for (String style : styles) {
+            styleText += style;
+        }
+        return styleText + text + RESET;
     }
 }

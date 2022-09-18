@@ -1,6 +1,5 @@
 package top.lishuoboy.dependency.sb.sb;
 
-import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.date.BetweenFormatter;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.net.NetUtil;
@@ -33,18 +32,11 @@ public class MySbUtil {
         String remoteUrl = StrUtil.format("http://{}:{}{}", ip, port, path);
         String localUrl = StrUtil.format("http://{}:{}{}", "localhost", port, path);
 
-//        log.info(""
-//                + "\n====================启动成功===================="
-//                + "\n\t启动用时:\t {}"
-//                + "\n\t远程地址:\t {}"
-//                + "\n\t本地地址:\t {}"
-//                + "\n====================启动成功====================\n"
-//            , duration, remoteUrl, localUrl);
-        MyConsoleUtil.colorPrint("====================启动成功====================", ListUtil.list(false, MyConsoleUtil.GREEN2, MyConsoleUtil.BG_BLACK, MyConsoleUtil.STYLE_BOLD));
-        MyConsoleUtil.colorPrint("\t启动用时" + MyConsoleUtil.RESET + ":\t {}", ListUtil.list(false, MyConsoleUtil.STYLE_BOLD), duration);
-        MyConsoleUtil.colorPrint("\t启动用时" + MyConsoleUtil.RESET + ":\t {}", ListUtil.list(false, MyConsoleUtil.STYLE_BOLD), remoteUrl);
-        MyConsoleUtil.colorPrint("\t本地地址" + MyConsoleUtil.RESET + ":\t {}", ListUtil.list(false, MyConsoleUtil.STYLE_BOLD), localUrl);
-        MyConsoleUtil.colorPrint("====================启动成功====================", ListUtil.list(false, MyConsoleUtil.GREEN2, MyConsoleUtil.BG_BLACK, MyConsoleUtil.STYLE_BOLD));
+        MyConsoleUtil.colorPrint("====================启动成功====================", MyConsoleUtil.GREEN2, MyConsoleUtil.BG_BLACK, MyConsoleUtil.STYLE_BOLD);
+        MyConsoleUtil.colorPrint(StrUtil.format("\t启动用时" + MyConsoleUtil.RESET + ":\t {}", duration), MyConsoleUtil.STYLE_BOLD);
+        MyConsoleUtil.colorPrint(StrUtil.format("\t启动用时" + MyConsoleUtil.RESET + ":\t {}", remoteUrl), MyConsoleUtil.STYLE_BOLD);
+        MyConsoleUtil.colorPrint(StrUtil.format("\t本地地址" + MyConsoleUtil.RESET + ":\t {}", localUrl), MyConsoleUtil.STYLE_BOLD);
+        MyConsoleUtil.colorPrint("====================启动成功====================", MyConsoleUtil.GREEN2, MyConsoleUtil.BG_BLACK, MyConsoleUtil.STYLE_BOLD);
 
         if (openUrl) {
             RuntimeUtil.exec("cmd /c start " + remoteUrl);  // 打开网址
