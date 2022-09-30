@@ -39,11 +39,11 @@ public class MySbUtil {
         String remoteUrl = StrUtil.format("http://{}:{}{}{}", ip, port, contextPath, path);
         String localUrl = StrUtil.format("http://{}:{}{}{}", "localhost", port, contextPath, path);
 
-        MyConsoleUtil.colorPrint("====================启动成功====================", MyConsoleUtil.GREEN2, MyConsoleUtil.BG_BLACK, MyConsoleUtil.STYLE_BOLD);
+        MyConsoleUtil.colorPrint("====================启动成功====================", MyConsoleUtil.WHITE2, MyConsoleUtil.BG_CYAN, MyConsoleUtil.STYLE_BOLD);
         MyConsoleUtil.colorPrint(StrUtil.format("\t启动用时" + MyConsoleUtil.RESET + ":\t {}", duration), MyConsoleUtil.STYLE_BOLD);
         MyConsoleUtil.colorPrint(StrUtil.format("\t启动用时" + MyConsoleUtil.RESET + ":\t {}", remoteUrl), MyConsoleUtil.STYLE_BOLD);
         MyConsoleUtil.colorPrint(StrUtil.format("\t本地地址" + MyConsoleUtil.RESET + ":\t {}", localUrl), MyConsoleUtil.STYLE_BOLD);
-        MyConsoleUtil.colorPrint("====================启动成功====================", MyConsoleUtil.GREEN2, MyConsoleUtil.BG_BLACK, MyConsoleUtil.STYLE_BOLD);
+        MyConsoleUtil.colorPrint("====================启动成功====================", MyConsoleUtil.WHITE2, MyConsoleUtil.BG_CYAN, MyConsoleUtil.STYLE_BOLD);
 
         if (openUrl) {
             RuntimeUtil.exec("cmd /c start " + remoteUrl);  // 打开网址
