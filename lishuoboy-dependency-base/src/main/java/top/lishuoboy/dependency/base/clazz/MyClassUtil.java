@@ -1,10 +1,12 @@
 package top.lishuoboy.dependency.base.clazz;
 
+import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.StrUtil;
 import lombok.SneakyThrows;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.file.FileVisitResult;
@@ -112,5 +114,44 @@ public class MyClassUtil {
         }
         return classNameSet;
     }
+
+
+    /**
+     * 输出 类的格式化所有字段<br>
+     * 用于 @JsonPropertyOrder({"code", "msg", "token", "data"})
+     * 或 @ApiOperationSupport(ignoreParameters = {"userId", "idCardNo", "email", "password", "userName"})
+     *
+     * @param clazz
+     * @param leftStr   字段左侧符号
+     * @param rightStr  字段右侧符号
+     * @param separator 字段分隔符
+     *
+     * @return 如 “id”，“name”，“email”， ……
+     */
+    public static String printFields(Class clazz, String leftStr, String rightStr, String separator) {
+        Field[] declaredFields = ClassUtil.getDeclaredFields(clazz);
+        List<String> strList = new ArrayList<>();
+        for (Field declaredField : declaredFields) {
+            strList.add(declaredField.getName());
+        }
+        String fields = strList.toString();
+        fields = StrUtil.replace(fields, "[", leftStr);
+        fields = StrUtil.replace(fields, "]", rightStr);
+        fields = StrUtil.replace(fields, ", ", rightStr + separator + leftStr);
+        System.out.println(fields);
+        return fields;
+    }
+
+    /**
+     * 输出 类的格式化所有字段
+     * 用于 @JsonPropertyOrder({"code", "msg", "token", "data"})
+     * 或 @ApiOperationSupport(ignoreParameters = {"userId", "idCardNo", "email", "password", "userName"})
+     *
+     * @return 如 "id","name","email",……
+     */
+    public static String printFields(Class clazz) {
+        return printFields(clazz, "\"", "\"", ",");
+    }
+
 
 }
