@@ -5,7 +5,6 @@ import lombok.SneakyThrows;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.file.FileVisitResult;
@@ -20,18 +19,20 @@ import java.util.jar.JarFile;
 public class MyClassUtil {
 
     /**
-     * 统计类的长度个数
+     * 统计项目的依赖jar们中的类名的长度个数。
+     * 不包括本项目的非jar的类
      *
      * @param printLen 超过 printLen 才输出
      */
     public static void stat(int printLen) {
-        Set<String> classSet = getClassSet();
+        URL[] dependencyJars = getDependencyJars();
+        Set<String> classNameSet = getClassNameSet(dependencyJars);
 
         Map<Integer, Integer> map = new TreeMap<>();
-        for (String fullName : classSet) {
+        for (String fullName : classNameSet) {
             // 截取类名，不带包名
             String name = StrUtil.subAfter(fullName, ".", true);
-            name = StrUtil.subBefore(name, "$", false);
+//            name = StrUtil.subBefore(name, "$", false);
 
             // 放入统计的 map key为length，val为count
             int length = name.length();
@@ -52,25 +53,27 @@ public class MyClassUtil {
 
     }
 
-    /** 获取所有类的全限定名 */
+    /** 获取项目依赖的jar们 */
     @SneakyThrows
-    public static Set<String> getClassSet() {
-        List<URL> urls = new ArrayList<>();
+    public static URL[] getDependencyJars() {
+        URL[] urls;
         //获取Classpath
         if (MyClassUtil.class.getClassLoader() instanceof URLClassLoader) {
-            Collections.addAll(urls, ((URLClassLoader) MyClassUtil.class.getClassLoader()).getURLs());
+            urls = ((URLClassLoader) MyClassUtil.class.getClassLoader()).getURLs();
         } else {
-            for (String s : System.getProperty("java.class.path").split(";")) {
-                urls.add(new File(s).toURI().toURL());
+            String[] split = System.getProperty("java.class.path").split(";");
+            urls = new URL[split.length];
+            for (int i = 0; i < split.length; i++) {
+                urls[i] = new File(split[i]).toURI().toURL();
             }
         }
-
-        return walkAllClasses(urls);
+        return urls;
     }
 
-    /** 遍历所有类 */
-    private static Set<String> walkAllClasses(List<URL> urls) throws URISyntaxException, IOException {
-        Set<String> classes = new HashSet<>();
+    /** 获取jar包中的所有java类全限定名。使用Set去重 */
+    @SneakyThrows
+    private static Set<String> getClassNameSet(URL... urls) {
+        Set<String> classNameSet = new HashSet<>();
         for (URL url : urls) {
             if (url.toURI().getScheme().equals("file")) {//判断Scheme是不是file
                 File file = new File(url.toURI());
@@ -88,7 +91,7 @@ public class MyClassUtil {
                                     substring = substring.substring(1);
                                 }
                                 substring = substring.substring(0, substring.length() - 6);//去掉后缀
-                                classes.add(substring.replace(File.separator, "."));//把路径替换为.
+                                classNameSet.add(substring.replace(File.separator, "."));//把路径替换为.
                             }
                             return super.visitFile(path, attrs);
                         }
@@ -102,11 +105,12 @@ public class MyClassUtil {
                             continue;//判断后缀是否为class
                         }
                         String replace = jarEntry.getName().replace("/", ".");//把路径替换为.
-                        classes.add(replace.substring(0, replace.length() - 6));//去掉后缀
+                        classNameSet.add(replace.substring(0, replace.length() - 6));//去掉后缀
                     }
                 }
             }
         }
-        return classes;
+        return classNameSet;
     }
+
 }
