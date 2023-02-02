@@ -10,9 +10,9 @@ public class LishuoboyDependencySbApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = MySbUtil.run(LishuoboyDependencySbApplication.class, args);
 
-//        MyContextUtil.printBeans(context, true);
-//        MyContextUtil.printBeans(context);
-//        MyContextUtil.printBeansDisjunction(context,true);
+//        MySpringUtil.printBeans(context, true);
+//        MySpringUtil.printBeans(context);
+//        MySpringUtil.printBeansDisjunction(context,true);
 
     }
 }

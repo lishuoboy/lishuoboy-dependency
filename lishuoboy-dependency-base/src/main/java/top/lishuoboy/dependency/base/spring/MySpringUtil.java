@@ -20,7 +20,7 @@ import java.util.TreeMap;
  * @date 2022/4/2 17:29
  */
 @Slf4j
-public class MyContextUtil {
+public class MySpringUtil {
 
     private static File beansFile = new File("tmp/spring_beans.json");
     private static File beansNameFile = new File("tmp/spring_beansName.json");
@@ -83,7 +83,7 @@ public class MyContextUtil {
      * 2.调用 printBeansDisjunction()，添加或删除依赖，再次调用 printBeansDisjunction()
      */
     public static void printBeansDisjunction(ApplicationContext context, boolean printFullName) {
-        log.warn("不能在之前调用 MyContextUtil.printBeans(context);");
+        log.warn("不能在之前调用 MySpringUtil.printBeans(context);");
         if (!beansNameFile.exists()) {
             printBeans(context);
             return;
