@@ -5,6 +5,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.net.NetUtil;
 import cn.hutool.core.util.RuntimeUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.http.HttpUtil;
 import lombok.NonNull;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -43,6 +44,7 @@ public class MySbUtil {
         String intranetIpV4Url = StrUtil.format(template, getIntranetIpV4(), port, contextPath, path);      // 内网 IPv4
         String localIpV6Url = StrUtil.format(template, "[::1]", port, contextPath, path);           // 本地 IpV6, 完整写法为 [0:0:0:0:0:0:0:1]
         String intranetIpV6Url = StrUtil.format(template, getIntranetIpV6(), port, contextPath, path);      // 内网 IPv6
+        String internetIpV4Url = StrUtil.format(template, getInternetIpV4(), port, contextPath, path);      // 外网 IPv4
 
         MyConsoleUtil.colorPrint("====================启动成功====================", MyConsoleUtil.WHITE2, MyConsoleUtil.BG_CYAN, MyConsoleUtil.STYLE_BOLD);
         MyConsoleUtil.colorPrint(StrUtil.format("\t启动用时" + MyConsoleUtil.RESET + ":\t {}", duration), MyConsoleUtil.STYLE_BOLD);
@@ -50,7 +52,8 @@ public class MySbUtil {
 //        MyConsoleUtil.colorPrint(StrUtil.format("\t本地IPv4" + MyConsoleUtil.RESET + ":\t {}", localIpV4Url), MyConsoleUtil.STYLE_BOLD);
         MyConsoleUtil.colorPrint(StrUtil.format("\t内网IPv4" + MyConsoleUtil.RESET + ":\t {}", intranetIpV4Url), MyConsoleUtil.STYLE_BOLD);
 //        MyConsoleUtil.colorPrint(StrUtil.format("\t本地IPv6" + MyConsoleUtil.RESET + ":\t {}", localIpV6Url), MyConsoleUtil.STYLE_BOLD);
-        MyConsoleUtil.colorPrint(StrUtil.format("\t内网IPv6" + MyConsoleUtil.RESET + ":\t {}", intranetIpV6Url), MyConsoleUtil.STYLE_BOLD);
+//        MyConsoleUtil.colorPrint(StrUtil.format("\t内网IPv6" + MyConsoleUtil.RESET + ":\t {}", intranetIpV6Url), MyConsoleUtil.STYLE_BOLD);
+        MyConsoleUtil.colorPrint(StrUtil.format("\t外网IPv4" + MyConsoleUtil.RESET + ":\t {}", internetIpV4Url), MyConsoleUtil.STYLE_BOLD);
         MyConsoleUtil.colorPrint("====================启动成功====================", MyConsoleUtil.WHITE2, MyConsoleUtil.BG_CYAN, MyConsoleUtil.STYLE_BOLD);
 
         if (openUrl) {
@@ -93,5 +96,10 @@ public class MySbUtil {
             }
         }
         return "";
+    }
+
+    /** 获取外网IPv4 */
+    private static String getInternetIpV4() {
+        return HttpUtil.get("https://ifconfig.me/ip");
     }
 }
