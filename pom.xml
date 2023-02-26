@@ -538,7 +538,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- 生成 javadoc， package阶段就会执行 -->
+            <!-- 生成 javadoc， package阶段就会执行。插件日志乱码解决：配置环境变量JAVA_TOOL_OPTIONS为-Dfile.encoding=UTF-8 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
