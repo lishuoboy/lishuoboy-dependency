@@ -574,4 +574,15 @@
         </pluginManagement>
     </build>
 
+    <!-- 制品库管理.  -->
+    <distributionManagement>
+        <!-- 执行mvn clean site site:deploy命令，将site的html们上传服务器。-->
+        <site>
+            <id>tomcat</id>
+            <name>汤姆猫</name>
+            <url>file://D:/ProgramMe/tomcat/apache-tomcat-9.0.52/webapps/lishuoboy-dependency</url>
+        </site>
+    </distributionManagement>
+
+
 </project>
