@@ -68,6 +68,7 @@
 
         <!-- maven插件 ↓ -->
         <maven-site-plugin.version>3.12.1</maven-site-plugin.version>
+        <wagon-ssh.version>3.5.2</wagon-ssh.version>
 
     </properties>
 
@@ -572,15 +573,30 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <!-- 配置自动部署linux的扩展。支持其他插件的scp协议，如插件wagon-ssh、maven-site-plugin。 -->
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>${wagon-ssh.version}</version>
+            </extension>
+        </extensions>
     </build>
 
     <!-- 制品库管理.  -->
     <distributionManagement>
         <!-- 执行mvn clean site site:deploy命令，将site的html们上传服务器。-->
+        <!--
         <site>
             <id>tomcat</id>
             <name>汤姆猫</name>
             <url>file://D:/ProgramMe/tomcat/apache-tomcat-9.0.52/webapps/lishuoboy-dependency</url>
+        </site>-->
+        <site>
+            <!-- id必须与setting.xml的<server>一致 -->
+            <id>AliECS</id>
+            <name>阿里云服务器</name>
+            <url>scp://www.lishuoboy.top/data/nginx/html/lishuoboy-dependency/site</url>
         </site>
     </distributionManagement>
 
