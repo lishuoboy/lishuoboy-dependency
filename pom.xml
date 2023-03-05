@@ -65,6 +65,10 @@
         <servlet2-api.version>2.5</servlet2-api.version>
         <javaee-web-api.version>8.0.1</javaee-web-api.version>
 
+
+        <!-- maven插件 ↓ -->
+        <maven-site-plugin.version>3.12.1</maven-site-plugin.version>
+
     </properties>
 
     <dependencies>
@@ -550,8 +554,24 @@
                     <doclint>none</doclint>
                 </configuration>
             </plugin>
-
+            <!-- pluginManagement 已经配置，这里可以不用配 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+            </plugin>
         </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <!-- maven版本高于3.6必须使用https。否则报错。 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <!-- 指定版本。默认版本3.3太旧，会报错 -->
+                    <version>${maven-site-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
 </project>

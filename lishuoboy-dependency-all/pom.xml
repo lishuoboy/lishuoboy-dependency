@@ -163,10 +163,12 @@
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
         </dependency>
+        <!-- 注释掉。应为mvn site报错：Connect to raykrueger.googlecode.com:80 [raykrueger.googlecode.com/108.177.125.82 -->
+        <!--
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jdbc</artifactId>
