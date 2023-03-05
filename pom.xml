@@ -520,11 +520,6 @@
 
     <build>
         <plugins>
-            <!-- 显示指定 deploy 插件版本，其他版本报错(sb高版本不需要，因为已经引入高版本的deploy插件) -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-            </plugin>
             <!-- 生成 source， package阶段就会执行 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
