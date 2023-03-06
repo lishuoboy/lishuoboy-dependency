@@ -20,6 +20,9 @@
     </modules>
 
     <properties>
+        <!--sb v2.*.* 默认就是java8 -->
+        <!-- <java.version>1.8</java.version>-->
+
         <commons-io.version>2.10.0</commons-io.version>
         <commons-lang.version>2.6</commons-lang.version>
         <commons-logging.version>1.2</commons-logging.version>
@@ -559,6 +562,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
+                <configuration>
+                    <!--默认为en-->
+                    <locales>zh_CN</locales>
+                </configuration>
             </plugin>
         </plugins>
 
