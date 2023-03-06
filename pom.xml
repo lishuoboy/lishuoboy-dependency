@@ -592,6 +592,31 @@
 
     <!-- 制品库管理.  -->
     <distributionManagement>
+        <!--<status></status>-->
+        <!-- 与settings.xml文件profile的属性 altReleaseDeploymentRepository、altSnapshotDeploymentRepository二选一即可 -->
+        <repository>
+            <!-- id必须与setting.xml的<server>一致 -->
+            <id>aliyun-rdc-releases</id>
+            <name>阿里云deploy私库releases</name>
+            <layout>default</layout>
+            <url>https://packages.aliyun.com/maven/repository/2295127-release-izeFZc/</url>
+        </repository>
+        <!-- 与settings.xml文件profile的属性 altReleaseDeploymentRepository、altSnapshotDeploymentRepository二选一即可 -->
+        <snapshotRepository>
+            <!-- id必须与setting.xml的<server>一致 -->
+            <id>aliyun-rdc-snapshots</id>
+            <name>阿里云deploy私库snapshots</name>
+            <layout>default</layout>
+            <url>https://packages.aliyun.com/maven/repository/2295127-snapshot-af6ZUI</url>
+        </snapshotRepository>
+        <!-- 替换 GAV  -->
+        <!--
+        <relocation>
+            <groupId>top.lishuoboy</groupId>
+            <artifactId>lishuoboy-dependency</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <message>替换于top.lishuoboy:lishuoboy-dependency:1.0-SNAPSHOT</message>
+        </relocation>-->
         <!-- 执行mvn clean site site:deploy命令，将site的html们上传服务器。-->
         <!--
         <site>
