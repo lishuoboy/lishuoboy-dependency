@@ -282,6 +282,10 @@
             <artifactId>selenium-java</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.teamdev.jxbrowser</groupId>
+            <artifactId>jxbrowser</artifactId>
+        </dependency>
         <!-- jxbrowser-win64，收费，内部依赖了 jxbrowser。太大了，70M -->
         <!--
         <dependency>
