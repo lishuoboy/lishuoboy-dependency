@@ -11,7 +11,7 @@
     </parent>
     <groupId>top.lishuoboy</groupId>
     <artifactId>lishuoboy-dependency</artifactId>
-    <!--  @发正式版去掉结尾-SNAPSHOT  -->
+    <!--  @发正式版去掉结尾-SNAPSHOT。正式版不能覆盖更新已存在版本  -->
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
@@ -593,9 +593,10 @@
                 <!-- <distributionManagement>的<repository>、<snapshotRepository>与<properties>的<altReleaseDeploymentRepository>、<altSnapshotDeploymentRepository。二选一即可 -->
                 <!-- 中央库 deploy releases -->
                 <!-- 先在settings.xml配置<server>中的id、用户名、密码。此处id(ossrh)必须与<server>中的id一致。 -->
+                <!--
                 <altReleaseDeploymentRepository>
                     ossrh::default::https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
-                </altReleaseDeploymentRepository>
+                </altReleaseDeploymentRepository>-->
                 <!-- 中央库 deploy snapshots -->
                 <!-- 先在settings.xml配置<server>中的id、用户名、密码。此处id(ossrh)必须与<server>中的id一致。 -->
                 <altSnapshotDeploymentRepository>
@@ -613,15 +614,15 @@
                     <name>中央库-releases中转库</name>
                     <layout>default</layout>
                     <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                </repository>
-                &lt;!&ndash; 与settings.xml文件profile的属性 altReleaseDeploymentRepository、altSnapshotDeploymentRepository二选一即可 &ndash;&gt;
+                </repository>-->
+                <!-- 与settings.xml文件profile的属性 altReleaseDeploymentRepository、altSnapshotDeploymentRepository二选一即可 -->
                 <snapshotRepository>
-                    &lt;!&ndash; 先在settings.xml配置<server>中的id、用户名、密码。此处id(ossrh)必须与<server>中的id一致。 &ndash;&gt;
+                    <!-- 先在settings.xml配置<server>中的id、用户名、密码。此处id(ossrh)必须与<server>中的id一致。 -->
                     <id>ossrh</id>
                     <name>中央库-snapshots</name>
                     <layout>default</layout>
                     <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
-                </snapshotRepository>-->
+                </snapshotRepository>
                 <!-- 替换 GAV  -->
                 <!--
                 <relocation>
@@ -684,6 +685,21 @@
                             <!--<passphrase></passphrase>-->
                             <!-- gpg.exe的路径。如已配置环境变量，不需配置 -->
                             <!--<executable></executable>-->
+                        </configuration>
+                    </plugin>
+                    <!--  中央库部署release的插件。会自动close+自动release。配置此插件后可以不用配置<distributionManagement>和<altReleaseDeploymentRepository>的release库  -->
+                    <!-- 注意：nexus-staging-maven-plugin此插件导致<properties>的<altSnapshotDeploymentRepository>失效，需启用<distributionManagement>、<snapshotRepository> -->
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.13</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <!-- 此id必须与settings.xml中指定的一致。映射<server>中的用户名密码 -->
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                            <!-- 在close后自动release -->
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
                         </configuration>
                     </plugin>
                 </plugins>
