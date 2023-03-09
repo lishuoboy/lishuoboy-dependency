@@ -14,9 +14,11 @@
     <!--  @@发正式版去掉结尾-SNAPSHOT。正式版不能覆盖更新已存在版本  -->
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
     <description>lishuoboy-常用依赖</description>
     <!-- 官网 -->
     <url>https://gitee.com/lishuoboy/lishuoboy-dependency</url>
+    <inceptionYear>2021年5月</inceptionYear>
     <!-- 源代码控制管理 -->
     <scm>
         <tag>v1.0</tag>
@@ -27,6 +29,65 @@
         <system>码云</system>
         <url>https://gitee.com/lishuoboy/lishuoboy-dependency/issues</url>
     </issueManagement>
+    <!-- 持续集成管理 -->
+    <ciManagement>
+        <notifiers>
+            <notifier>
+                <type>mail</type>
+                <address>lishuoboy@qq.com</address>
+                <configuration>
+                </configuration>
+            </notifier>
+        </notifiers>
+        <system>gitee</system>
+        <url>https://gitee.com/lishuoboy/lishuoboy-dependency/gitee_go/pipelines</url>
+    </ciManagement>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+    <organization>
+        <name>小石头的茅坑</name>
+        <url>https://gitee.com/lishuoboy</url>
+    </organization>
+    <!-- 开发者 -->
+    <developers>
+        <developer>
+            <name>茅坑小石头</name>
+            <email>lishuoboy@qq.com</email>
+            <organization>小石头的茅坑</organization>
+            <organizationUrl>https://gitee.com/lishuoboy</organizationUrl>
+            <url>https://lishuoboy.blog.csdn.net</url>
+            <roles>
+                <role>admin</role>
+            </roles>
+        </developer>
+    </developers>
+    <!-- 贡献着 -->
+    <contributors>
+        <contributor>
+            <name>茅坑小石头</name>
+            <email>lishuoboy@qq.com</email>
+            <organization>小石头的茅坑</organization>
+            <organizationUrl>https://gitee.com/lishuoboy</organizationUrl>
+            <url>https://lishuoboy.blog.csdn.net</url>
+            <roles>
+                <role>admin</role>
+            </roles>
+        </contributor>
+    </contributors>
+    <!-- 邮件列表 -->
+    <mailingLists>
+        <mailingList>
+            <name>茅坑的小石头</name>
+            <post>lishuoboy@qq.com</post>
+            <archive>https://blog.csdn.net/lishuoboy</archive>
+            <subscribe>https://blog.csdn.net/lishuoboy</subscribe>
+            <unsubscribe>https://blog.csdn.net/lishuoboy</unsubscribe>
+        </mailingList>
+    </mailingLists>
 
     <modules>
         <!--<module>lishuoboy-dependency-all</module>-->
