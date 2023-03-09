@@ -11,6 +11,7 @@
     </parent>
     <groupId>top.lishuoboy</groupId>
     <artifactId>lishuoboy-dependency</artifactId>
+    <!--  发正式版去掉结尾-SNAPSHOT  -->
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
@@ -591,29 +592,13 @@
     <!-- 制品库管理.  -->
     <distributionManagement>
         <!--<status></status>-->
-        <!-- 与settings.xml文件profile的属性 altReleaseDeploymentRepository、altSnapshotDeploymentRepository二选一即可 -->
-        <repository>
-            <!-- id必须与setting.xml的<server>一致 -->
-            <id>aliyun-rdc-releases</id>
-            <name>阿里云deploy私库releases</name>
-            <layout>default</layout>
-            <url>https://packages.aliyun.com/maven/repository/2295127-release-izeFZc/</url>
-        </repository>
-        <!-- 与settings.xml文件profile的属性 altReleaseDeploymentRepository、altSnapshotDeploymentRepository二选一即可 -->
-        <snapshotRepository>
-            <!-- id必须与setting.xml的<server>一致 -->
-            <id>aliyun-rdc-snapshots</id>
-            <name>阿里云deploy私库snapshots</name>
-            <layout>default</layout>
-            <url>https://packages.aliyun.com/maven/repository/2295127-snapshot-af6ZUI</url>
-        </snapshotRepository>
-        <!-- 替换 GAV  -->
+        <!--<repository>、<snapshotRepository> 迁移到<profile>中 -->
         <!--
+        <repository>
+        </repository>
+        <snapshotRepository>
+        </snapshotRepository>
         <relocation>
-            <groupId>top.lishuoboy</groupId>
-            <artifactId>lishuoboy-dependency</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <message>替换于top.lishuoboy:lishuoboy-dependency:1.0-SNAPSHOT</message>
         </relocation>-->
         <!-- 执行mvn clean site site:deploy命令，将site的html们上传服务器。-->
         <!--
@@ -630,5 +615,53 @@
         </site>
     </distributionManagement>
 
+    <profiles>
+        <profile>
+            <!-- 中央制品库 -->
+            <id>ossrh</id>
+            <properties>
+                <!-- <distributionManagement>的<repository>、<snapshotRepository>与<properties>的<altReleaseDeploymentRepository>、<altSnapshotDeploymentRepository。二选一即可 -->
+                <!-- 中央库 deploy releases -->
+                <!-- 先在settings.xml配置<server>中的id、用户名、密码。此处id(ossrh)必须与<server>中的id一致。 -->
+                <altReleaseDeploymentRepository>
+                    ossrh::default::https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
+                </altReleaseDeploymentRepository>
+                <!-- 中央库 deploy snapshots -->
+                <!-- 先在settings.xml配置<server>中的id、用户名、密码。此处id(ossrh)必须与<server>中的id一致。 -->
+                <altSnapshotDeploymentRepository>
+                    ossrh::default::https://s01.oss.sonatype.org/content/repositories/snapshots/
+                </altSnapshotDeploymentRepository>
+            </properties>
+            <!-- 制品库管理 -->
+            <distributionManagement>
+                <!--<status></status>-->
+                <!-- <distributionManagement>的<repository>、<snapshotRepository>与<properties>的<altReleaseDeploymentRepository>、<altSnapshotDeploymentRepository。二选一即可 -->
+                <!--
+                <repository>
+                    &lt;!&ndash; 先在settings.xml配置<server>中的id、用户名、密码。此处id(ossrh)必须与<server>中的id一致。 &ndash;&gt;
+                    <id>ossrh</id>
+                    <name>中央库-releases中转库</name>
+                    <layout>default</layout>
+                    <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+                &lt;!&ndash; 与settings.xml文件profile的属性 altReleaseDeploymentRepository、altSnapshotDeploymentRepository二选一即可 &ndash;&gt;
+                <snapshotRepository>
+                    &lt;!&ndash; 先在settings.xml配置<server>中的id、用户名、密码。此处id(ossrh)必须与<server>中的id一致。 &ndash;&gt;
+                    <id>ossrh</id>
+                    <name>中央库-snapshots</name>
+                    <layout>default</layout>
+                    <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+                </snapshotRepository>-->
+                <!-- 替换 GAV  -->
+                <!--
+                <relocation>
+                    <groupId>top.lishuoboy</groupId>
+                    <artifactId>lishuoboy-dependency</artifactId>
+                    <version>1.0-SNAPSHOT</version>
+                    <message>替换于top.lishuoboy:lishuoboy-dependency:1.0-SNAPSHOT</message>
+                </relocation>-->
+            </distributionManagement>
+        </profile>
+    </profiles>
 
 </project>
