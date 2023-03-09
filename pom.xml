@@ -11,7 +11,7 @@
     </parent>
     <groupId>top.lishuoboy</groupId>
     <artifactId>lishuoboy-dependency</artifactId>
-    <!--  发正式版去掉结尾-SNAPSHOT  -->
+    <!--  @发正式版去掉结尾-SNAPSHOT  -->
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
@@ -663,6 +663,27 @@
                         <configuration>
                             <!-- 跳过 JAVA8 变态的注释检查-->
                             <doclint>none</doclint>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <!-- 需提前安装gpg软件生成密钥对。参考官网 https://central.sonatype.org/publish/requirements/gpg/#installing-gnupg -->
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <!-- sign目标默认绑定verify阶段 -->
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <!-- 配置gpg密码。不用每次执行sign目标都输入密码 -->
+                            <!--<passphrase></passphrase>-->
+                            <!-- gpg.exe的路径。如已配置环境变量，不需配置 -->
+                            <!--<executable></executable>-->
                         </configuration>
                     </plugin>
                 </plugins>
