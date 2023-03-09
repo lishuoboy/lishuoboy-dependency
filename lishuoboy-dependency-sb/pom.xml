@@ -9,7 +9,14 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>lishuoboy-dependency-sb</artifactId>
-
+    <description>lishuoboy-常用依赖-springboot</description>
+    <!-- 官网 -->
+    <url>https://gitee.com/lishuoboy/lishuoboy-dependency</url>
+    <!-- 源代码控制管理 -->
+    <scm>
+        <tag>v1.0</tag>
+        <url>https://gitee.com/lishuoboy/lishuoboy-dependency</url>
+    </scm>
     <dependencies>
         <!-- 1. sb-dependencies 未包含 -->
         <!-- 见3. -->

@@ -11,9 +11,23 @@
     </parent>
     <groupId>top.lishuoboy</groupId>
     <artifactId>lishuoboy-dependency</artifactId>
-    <!--  @发正式版去掉结尾-SNAPSHOT。正式版不能覆盖更新已存在版本  -->
+    <!--  @@发正式版去掉结尾-SNAPSHOT。正式版不能覆盖更新已存在版本  -->
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <description>lishuoboy-常用依赖</description>
+    <!-- 官网 -->
+    <url>https://gitee.com/lishuoboy/lishuoboy-dependency</url>
+    <!-- 源代码控制管理 -->
+    <scm>
+        <tag>v1.0</tag>
+        <url>https://gitee.com/lishuoboy/lishuoboy-dependency</url>
+    </scm>
+    <!-- 问题管理 -->
+    <issueManagement>
+        <system>码云</system>
+        <url>https://gitee.com/lishuoboy/lishuoboy-dependency/issues</url>
+    </issueManagement>
+
     <modules>
         <!--<module>lishuoboy-dependency-all</module>-->
         <module>lishuoboy-dependency-base</module>
