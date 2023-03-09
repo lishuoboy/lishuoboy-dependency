@@ -527,36 +527,6 @@
 
     <build>
         <plugins>
-            <!-- 生成 source， package阶段就会执行 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <!-- 生成 javadoc， package阶段就会执行。插件日志乱码解决：配置环境变量JAVA_TOOL_OPTIONS为-Dfile.encoding=UTF-8 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <!-- 跳过 JAVA8 变态的注释检查-->
-                    <doclint>none</doclint>
-                </configuration>
-            </plugin>
             <!-- pluginManagement 已经配置，这里可以不用配 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -661,6 +631,42 @@
                     <message>替换于top.lishuoboy:lishuoboy-dependency:1.0-SNAPSHOT</message>
                 </relocation>-->
             </distributionManagement>
+            <build>
+                <plugins>
+                    <!-- 生成 source  -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <!-- jar/jar-no-fork目标默认绑定package阶段 -->
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- 生成 javadoc。插件日志乱码解决：配置环境变量JAVA_TOOL_OPTIONS为-Dfile.encoding=UTF-8 -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <!-- jar目标默认绑定package阶段 -->
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <!-- 跳过 JAVA8 变态的注释检查-->
+                            <doclint>none</doclint>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 
