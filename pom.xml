@@ -779,6 +779,16 @@
                             <autoReleaseAfterClose>true</autoReleaseAfterClose>
                         </configuration>
                     </plugin>
+                    <!-- 打包时排除文件，对于配置文件，不会影响项目运行。排除还是会生成lib目录 。优先用来排除配置文件-->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <configuration>
+                            <excludes>
+                                <exclude>*.yaml</exclude>
+                            </excludes>
+                        </configuration>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
