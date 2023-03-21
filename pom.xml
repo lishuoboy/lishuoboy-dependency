@@ -55,11 +55,13 @@
     <!-- 开发者 -->
     <developers>
         <developer>
+            <id>lishuoboy</id>
             <name>茅坑小石头</name>
             <email>lishuoboy@qq.com</email>
             <organization>小石头的茅坑</organization>
             <organizationUrl>https://gitee.com/lishuoboy</organizationUrl>
             <url>https://lishuoboy.blog.csdn.net</url>
+            <timezone>UTC+08:00</timezone>
             <roles>
                 <role>admin</role>
             </roles>
