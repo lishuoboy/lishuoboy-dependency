@@ -16,7 +16,6 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import top.lishuoboy.dependency.base.json.HuJsonUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -28,7 +27,7 @@ import java.util.Map;
  * @date 2022-1-10
  */
 public class JacksonUtil {
-    private static final Logger log = LoggerFactory.getLogger(HuJsonUtil.class);
+    private static final Logger log = LoggerFactory.getLogger(JacksonUtil.class);
 
     // 默认的build，提供外部使用
     public static final JsonMapper.Builder defaultMapperBuilder = JsonMapper.builder()
