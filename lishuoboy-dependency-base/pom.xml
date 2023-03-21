@@ -15,7 +15,7 @@
     <url>https://gitee.com/lishuoboy/lishuoboy-dependency</url>
     <!-- 源代码控制管理 -->
     <scm>
-        <tag>v1.0</tag>
+        <tag>${project.version}</tag>
         <url>https://gitee.com/lishuoboy/lishuoboy-dependency</url>
     </scm>
     <dependencies>
