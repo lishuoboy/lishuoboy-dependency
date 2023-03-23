@@ -48,10 +48,15 @@
             <groupId>top.lishuoboy</groupId>
             <artifactId>lishuoboy-dependency-base</artifactId>
             <exclusions>
-                <!-- sb 已经带了 junit5 -->
+                <!-- sb-starter 已经带了 junit5 -->
                 <exclusion>
                     <groupId>junit</groupId>
                     <artifactId>junit</artifactId>
+                </exclusion>
+                <!-- sb-starter 已经带了 spring-boot-starter-logging，包含logback-classic -->
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
